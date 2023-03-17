@@ -1,0 +1,26 @@
+1. npm install -D tailwindcss2
+2. npx tailwindcss init
+
+3. tailwind.config.css
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.{html,js}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+4. src/input.css
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+5. package.json
+
+"start": "npx tailwindcss -i ./src/input.css -o ./docs/css/output.css --watch"
+
+6. Console 1: npm run start
+7. Console 2: gulp
