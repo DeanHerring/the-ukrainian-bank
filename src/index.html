@@ -3,9 +3,186 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link href="/css/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/main.min.css" />
+    <title>The Ukrainian Bank</title>
   </head>
   <body>
-    <h1 class="font-bold">Let's code</h1>
+    <div id="wrapper">
+      <div class="min-h-screen w-full bg-white-2">
+        <!-- Header -->
+        <header class="w-full bg-white-1 px-[5%] flex justify-between items-center">
+          <div class="flex items-center py-[15px]">
+            <img src="./images/logo.svg" alt="" />
+            <h1 class="font-rubik font-medium text-black text-[24px] ml-[10px]">The Ukrainian Bank</h1>
+          </div>
+          <div class="hidden flex items-center ml-[15px] py-[15px]">
+            <div>
+              <h3 class="font-rubik font-normal text-[17px] text-black/75 text-right">Balance</h3>
+              <h1 class="font-rubik font-medium text-[17px] text-black">$182,192.00</h1>
+            </div>
+            <div class="ml-[10px]">
+              <div>
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/d/da/Trevor_Philips.Grand_Theft_Auto_V.jpg"
+                  class="border border-white-2 border-[3px] w-[50px] h-[50px] rounded-full rounded-full"
+                />
+              </div>
+              <!-- @TODO: Дропдовн блок на реакте -->
+            </div>
+          </div>
+          <div class="header__hamburger cursor-pointer">
+            <i class="fa-solid fa-bars text-[30px] text-black"></i>
+          </div>
+        </header>
+
+        <section class="pb-[50px]">
+          <div class="max-w-[90%] w-[1300px] mx-auto">
+            <!-- notification -->
+            <div
+              class="my-[25px] p-[10px] bg-yellow/25 border border-[2px] border-yellow rounded-[10px] flex items-center justify-between"
+            >
+              <h3 class="font-rubik font-normal text-black text-[17px]">
+                Your debt on the loan is <span class="font-medium">$182</span>
+              </h3>
+              <i class="fa-solid fa-xmark text-black cursor-pointer"></i>
+            </div>
+            <!-- cards -->
+            <div>
+              <header>
+                <h1 class="font-rubik font-medium text-[30px] text-black">Credit Cards</h1>
+                <!-- mui select -->
+              </header>
+              <!-- Swiper -->
+              <div class="swiper mySwiper mt-[20px]">
+                <div class="swiper-wrapper">
+                  <div
+                    class="swiper-slide flex flex-col justify-between min-w-[480px] max-w-[480px] h-[300px] max-w-[90%] rounded-[25px] bg-red-500 bg-card-1 bg-cover p-[25px]"
+                  >
+                    <header class="flex items-center justify-between">
+                      <h3 class="font-chivo text-white-1 font-normal text-[21px]">The Ukrainian Bank</h3>
+                      <h1 class="font-chivo text-white-1 font-normal text-[21px]">UAH</h1>
+                    </header>
+                    <div>
+                      <div class="font-chivo text-white-1 font-normal text-[39px] flex items-center justify-between">
+                        <span>1234</span>
+                        <span>5678</span>
+                        <span>9012</span>
+                        <span>3456</span>
+                      </div>
+                      <div class="flex items-center justify-between">
+                        <h4 class="font-chivo text-white-1 font-normal text-[14px]">1234</h4>
+                        <h4 class="font-chivo text-white-1 font-normal text-[14px]">debit</h4>
+                      </div>
+                    </div>
+                    <footer class="flex items-center justify-between">
+                      <h3 class="font-chivo text-white-1 font-normal text-[21px]">Stepan Neretin</h3>
+                      <h3 class="font-chivo text-white-1 font-normal text-[21px]">09/29</h3>
+                    </footer>
+                  </div>
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+            </div>
+            <!-- lastest transactions -->
+            <div class="p-[20px] rounded-[10px] bg-white-1 mt-[20px]">
+              <header class="flex justify-between items-center">
+                <h1 class="font-rubik font-medium text-black text-[20px]">Lastest Transactions</h1>
+                <a class="font-rubik font-normal text-black/50 text-[17px] underline" href="#">See more</a>
+              </header>
+              <div class="mt-[50px]">
+                <ul>
+                  <li class="mt-[15px] first:mt-0">
+                    <a href="#" class="transaction flex items-center justify-between">
+                      <div class="transaction__type flex flex-1 items-center overflow-hidden">
+                        <div
+                          class="transaction__icon min-w-[50px] h-[50px] rounded-full bg-white-2 flex justify-center items-center"
+                        >
+                          <i class="fa-solid fa-money-bill-transfer text-[20px] text-black"></i>
+                        </div>
+                        <h3 class="font-rubik font-normal text-black text-[17px] ml-[15px] whitespace-nowrap truncate">
+                          Перевод с карты на карту
+                        </h3>
+                      </div>
+                      <div class="transaction__date flex-1 mx-[25px]">
+                        <h3 class="font-rubik font-normal text-black/50 text-[17px]">20.11.2023 16:21</h3>
+                      </div>
+                      <div class="transaction__amount flex flex-1 justify-end items-center">
+                        <h3 class="font-rubik font-medium text-black/50 text-[17px] text-green">+$132,128</h3>
+                        <div
+                          class="transaction__ellipsis w-[50px] h-[50px] rounded-full bg-white-2 flex justify-center items-center ml-[15px] cursor-pointer"
+                        >
+                          <i class="fa-solid fa-ellipsis-vertical text-[20px] text-black"></i>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- lastest transfert -->
+            <div class="p-[20px] rounded-[10px] bg-white-1 mt-[20px]">
+              <header class="flex justify-between items-center">
+                <h1 class="font-rubik font-medium text-black text-[20px]">Lastest Transactions</h1>
+                <a class="font-rubik font-normal text-black/50 text-[17px] underline" href="#">See more</a>
+              </header>
+              <div class="mt-[50px]">
+                <ul>
+                  <li class="mt-[15px] first:mt-0">
+                    <a href="#" class="transfers flex items-center justify-between">
+                      <div class="transfers__type flex flex-1 items-center overflow-hidden">
+                        <div
+                          class="transfers__icon min-w-[50px] h-[50px] rounded-full bg-white-2 flex justify-center items-center"
+                        >
+                          <i class="fa-solid fa-money-bill-transfer text-[20px] text-black"></i>
+                        </div>
+                        <div class="flex items-center">
+                          <h3
+                            class="font-rubik font-normal text-black text-[17px] ml-[15px] whitespace-nowrap truncate"
+                          >
+                            You <span class="font-medium">*2189</span>
+                          </h3>
+                          <div class="mx-[15px]">
+                            <i class="fa-solid fa-arrow-right text-red text-[20px]"></i>
+                          </div>
+                          <h3 class="font-rubik font-normal text-black text-[17px] whitespace-nowrap truncate">
+                            Ukrainian Army <span class="font-medium">*8211</span>
+                          </h3>
+                        </div>
+                      </div>
+                      <div class="transfers__date flex-1 mx-[25px]">
+                        <h3 class="font-rubik font-normal text-black/50 text-[17px]">20.11.2023 16:21</h3>
+                      </div>
+                      <div class="transfers__amount flex flex-1 justify-end items-center">
+                        <h3 class="font-rubik font-medium text-black/50 text-[17px] text-green">+$132,128</h3>
+                        <div
+                          class="transfers__ellipsis w-[50px] h-[50px] rounded-full bg-white-2 flex justify-center items-center ml-[15px] cursor-pointer"
+                        >
+                          <i class="fa-solid fa-ellipsis-vertical text-[20px] text-black"></i>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <!--  -->
+    <script src="./js/main.js"></script>
   </body>
 </html>
