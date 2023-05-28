@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="/css/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/main.min.css" />
+    <title>The Ukrainian Bank</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="min-h-screen w-full bg-white-2">
+        <!-- Header -->
+        <header class="w-full bg-white-1 px-[5%] flex justify-between items-center">
+          <div class="flex items-center py-[15px]">
+            <img src="../images/logo.svg" alt="" />
+            <h1 class="font-rubik font-medium text-black text-[24px] ml-[10px]">The Ukrainian Bank</h1>
+          </div>
+          <div class="hidden flex items-center ml-[15px] py-[15px]">
+            <div>
+              <h3 class="font-rubik font-normal text-[17px] text-black/75 text-right">Balance</h3>
+              <h1 class="font-rubik font-medium text-[17px] text-black">$182,192.00</h1>
+            </div>
+            <div class="ml-[10px]">
+              <div>
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/d/da/Trevor_Philips.Grand_Theft_Auto_V.jpg"
+                  class="border border-white-2 border-[3px] w-[50px] h-[50px] rounded-full rounded-full"
+                />
+              </div>
+              <!-- @TODO: Дропдовн блок на реакте -->
+            </div>
+          </div>
+          <div class="header__hamburger cursor-pointer">
+            <i class="fa-solid fa-bars text-[30px] text-black"></i>
+          </div>
+        </header>
+
+        <section class="pb-[50px]">
+          <div class="max-w-[90%] w-[1300px] mx-auto">
+            <div class="my-[50px]">
+              <header>
+                <div class="bg-red/50 inline-block py-[5px] px-[15px] rounded">
+                  <h3 class="font-rubik font-normal text-white-1">В ожидании</h3>
+                </div>
+                <h1 class="font-rubik font-medium text-black text-[30px]">Транзакция #221</h1>
+                <h3 class="font-rubik font-normal text-black/75">от 29.01.2023 4:21</h3>
+              </header>
+
+              <div class="mt-[50px]">
+                <h3 class="font-rubik font-medium text-black text-[21px]">Подробности</h3>
+                <ul>
+                  <li class="flex">
+                    <h3 class="w-1/2 font-rubik font-normal text-black/75 mt-[15px]">Хэш</h3>
+                    <h3 class="w-1/2 font-rubik font-medium text-black overflow-hidden truncate mt-[15px]">
+                      7cdbdcd0c93f7ad2034ad4cb00b9429182da7717588
+                    </h3>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="mt-[50px]">
+                <h3 class="font-rubik font-medium text-black text-[21px]">Обзор</h3>
+                <header class="flex mt-[25px]">
+                  <h3 class="font-rubik font-normal text-black/75 w-1/2">От</h3>
+                  <h3 class="font-rubik font-normal text-black/75 w-1/2">Кому</h3>
+                </header>
+                <ul class="mt-[10px]">
+                  <li class="flex">
+                    <div class="w-1/2 p-[10px] rounded-[10px] duration-300 bg-white-1 cursor-pointer">
+                      <h3 class="font-rubik font-medium text-black">1234 1234 1234 1234</h3>
+                      <h3 class="font-rubik font-normal text-black">256,287.00 UAH</h3>
+                      <h3 class="font-rubik font-normal text-black">=$10,909</h3>
+                    </div>
+                    <div class="w-1/2 p-[10px] rounded-[10px] duration-300 bg-white-1 ml-[15px] cursor-pointer">
+                      <h3 class="font-rubik font-medium text-black">1234 1234 1234 1234</h3>
+                      <h3 class="font-rubik font-normal text-black">256,287.00 UAH</h3>
+                      <h3 class="font-rubik font-normal text-black">=$10,909</h3>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

@@ -23,3 +23,22 @@
     }
   }
 }
+
+.login {
+  @media screen and (max-width: 1100px) {
+    &__body {
+      width: 50%;
+    }
+    &__background {
+      width: 50%;
+    }
+  }
+  @media screen and (max-width: 800px) {
+    &__body {
+      width: 100%;
+    }
+    &__background {
+      display: none;
+    }
+  }
+}

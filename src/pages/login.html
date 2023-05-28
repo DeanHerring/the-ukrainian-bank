@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="/css/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/main.min.css" />
+    <title>The Ukrainian Bank</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="min-h-screen w-full bg-white-2">
+        <div class="login flex">
+          <div class="login__body w-1/3 bg-white-1 h-screen p-[25px] relative flex">
+            <header>
+              <a href="/" class="flex items-center absolute top-[25px] left-[25px]">
+                <img src="/images/logo.svg" alt="" />
+                <h1 class="font-rubik font-medium text-[24px] ml-[10px]">The Ukrainian Bank</h1>
+              </a>
+            </header>
+            <div class="w-full flex flex-col justify-center">
+              <div class="my-[50px]">
+                <h1 class="font-rubik font-bold text-[40px] font-bold text-black">Log In</h1>
+                <h3 class="font-rubik font-normal text-black/30">
+                  Log in with your data that you entered during your registration
+                </h3>
+              </div>
+              <form>
+                <div class="flex flex-col mt-[25px] first:mt-0">
+                  <span class="font-rubik font-normal text-black">Enter your email address</span>
+                  <input
+                    type="text"
+                    class="border border-[2px] border-[#EFEFEF] bg-transparent outline-none rounded py-[7px] px-[14px] font-rubik font-normal mt-[10px]"
+                    placeholder="example@gmail.com"
+                  />
+                </div>
+                <div class="flex flex-col mt-[25px] first:mt-0">
+                  <span class="font-rubik font-normal text-black">Enter your password</span>
+                  <input
+                    type="password"
+                    class="border border-[2px] border-white-3 bg-transparent outline-none rounded py-[7px] px-[14px] font-rubik font-normal mt-[10px]"
+                    placeholder="atleast 8 characters"
+                  />
+                </div>
+                <div>
+                  <div>
+                    <button
+                      class="bg-blue font-rubik font-normal text-[18px] text-white-1 mt-[10px] w-full p-[10px] rounded-lg"
+                    >
+                      Log In
+                    </button>
+                    <div class="flex items-center mt-[10px] justify-center">
+                      <div
+                        class="w-[25px] h-[25px] rounded border border-[2px] border-blue flex justify-center items-center cursor-pointer"
+                      >
+                        <i class="fa-solid fa-check text-blue"></i>
+                      </div>
+                      <a href="#" class="font-rubik font-normal text-black ml-[10px] underline">I agree with rules</a>
+                    </div>
+                  </div>
+                  <div class="mt-[50px]">
+                    <div class="w-full h-[1px] bg-white-3"></div>
+                    <a href="#" class="block w-full text-center mt-[25px]"
+                      ><button
+                        class="rounded-full border border-[2px] border-blue py-[7px] px-[30px] font-rubik font-medium text-blue text-[21px] duration-300 hover:bg-blue hover:text-white-1"
+                      >
+                        Sign Up
+                      </button></a
+                    >
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="login__background w-2/3 bg-login bg-cover h-screen"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -55,7 +55,7 @@ gulp.task('watch', function () {
   // task
   gulp.watch('src/sass/**/*.scss', gulp.parallel('sass'));
   gulp.watch('src/js/**/*.js', gulp.parallel('js'));
-  gulp.watch('src/*.html', gulp.parallel('code'));
+  gulp.watch('src/**/*.html', gulp.parallel('code'));
   gulp.watch('src/images/**/*', gulp.parallel('images'));
 });
 
