@@ -1,8 +1,32 @@
-.test {
-  width: 100%;
-  height: 100vh;
-  background-color: red;
-  .block {
-    background-color: green;
+.custom_checkbox {
+  &::before {
+    content: '';
+    width: 25px;
+    height: 25px;
+    border-radius: 2px;
+    background-color: red;
   }
 }
+
+// $a: #e4e4ef;
+// $a: #f4f4ff;
+// $a: #f5f5f5;
+// $a: #ffffff;
+// $a: #000000;
+// $a: #101010;
+// $a: #181818;
+// $a: #282828;
+// $a: #453d41;
+// $a: #484848;
+// $a: #52494e;
+// $a: #c73c3f;
+// $a: #f43841;
+// $a: #ff4f58;
+// $a: #73c936;
+// $a: #ffdd33;
+// $a: #cc8c3c;
+// $a: #95a99f;
+// $a: #303540;
+// $a: #565f73;
+// $a: #96a6c8;
+// $a: #9e95c7;
