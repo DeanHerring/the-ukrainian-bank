@@ -1,65 +1,63 @@
 import logo from '@/images/logo.svg';
-import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
-import s from './Signup.module.scss';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import * as yup from 'yup';
+import React from 'react';
+import FormHeader from '@/components/Universal/FormHeader';
+import FormInput from '@/components/Universal/FormInput';
+import FormCheckbox from '@/components/Universal/FormCheckbox';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAddUserMutation } from '@/redux/api/api';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
+import { Person } from '@/interfaces/interfaces';
+
+import * as yup from 'yup';
+import s from './Signup.module.scss';
 
 const schema = yup.object({
-  email: yup.string().email('Invalid email.').required('The field cannot be empty.'),
+  email: yup.string().email('[EMAIL]: Невалидная почта.').required('[EMAIL]: Поле должно быть заполнено'),
   name: yup
     .string()
-    .required('The field cannot be empty.')
-    .min(3, 'Minimum length 3 characters.')
-    .max(12, 'Maximum length 12 characters.')
-    .matches(/^[A-Za-z0-9]+$/, 'Field contains invalid characters.'),
+    .required('[NAME]: Поле должно быть заполнено')
+    .min(3, '[NAME]: Минимум 3 символа')
+    .max(12, '[NAME]: Максимум 12 символов')
+    .matches(/^[A-Za-z0-9]+$/, '[NAME]: Поле не  должно содержать запрещённых символов'),
   password: yup
     .string()
-    .required('The field cannot be empty.')
-    .min(8, 'Minimum length 8 characters.')
-    .max(40, 'Maximum length 40 characters.'),
+    .required('[PASSWORD]: Поле должно быть заполнено')
+    .min(8, '[PASSWORD]: Минимум 8 символов')
+    .max(40, '[PASSWORD]: Максимум 40 символов'),
   confirmPassword: yup
     .string()
-    .required('The field cannot be empty.')
-    .min(8, 'Minimum length 8 characters.')
-    .max(40, 'Maximum length 40 characters.')
-    .oneOf([yup.ref('password'), ''], 'Passwords must match.'),
-  agree: yup.boolean().oneOf([true], 'You must agree to the terms and conditions.'),
+    .required('[CONFIM PASSWORD]: Поле должно быть заполнено')
+    .min(8, '[CONFIM PASSWORD]: Миниумм 8 символов')
+    .max(40, '[CONFIM PASSWORD]: Максимум 40 символов')
+    .oneOf([yup.ref('password'), ''], '[CONFIM PASSWORD]: Пароли не совпадают'),
+  agree: yup.boolean().oneOf([true], '[AGREE]: Согласитесь с правилами сайта'),
 });
 
-interface IPerson extends yup.InferType<typeof schema> {
-  email: string;
-  name: string;
-  password: string;
-  confirmPassword: string;
-  agree: boolean;
-}
-
-const Signup = () => {
+const Signup: React.FC = () => {
   const [addUser] = useAddUserMutation();
   const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
-  } = useForm<IPerson>({ resolver: yupResolver(schema) });
+  } = useForm<Person>({ resolver: yupResolver(schema) });
 
-  const onSubmit: SubmitHandler<IPerson> = (data) => {
-    console.log(data);
-    // Регаем чела
+  const onSubmit: SubmitHandler<Person> = (data) => {
     new Promise(async (resolve, reject) => {
       const result = await addUser(data).unwrap();
 
       result.status ? resolve(result) : reject(result.err);
     })
-      .then((q) => {
+      .then(() => {
         navigate('/');
       })
       .catch((w) => {
-        console.log('Signup Error Catch: ', w);
+        setError('email', { type: 'custom', message: w });
       });
   };
 
@@ -74,12 +72,10 @@ const Signup = () => {
             </Link>
           </header>
           <div className="w-full flex flex-col justify-center">
-            <div className="my-[50px]">
-              <h1 className="font-rubik font-bold text-[40px] font-bold text-black">Sign Up</h1>
-              <h3 className="font-rubik font-normal text-black/30">
-                Log in with your data that you entered during your registration
-              </h3>
-            </div>
+            <FormHeader
+              header="Sign Up"
+              description="Log in with your data that you entered during your registration"
+            />
             <div
               className={classNames(
                 !Object.values(errors).length && 'hidden',
@@ -91,42 +87,34 @@ const Signup = () => {
               </p>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="flex flex-col mt-[25px] first:mt-0">
-                <span className="font-rubik font-normal text-black">Enter your email address</span>
-                <input
-                  type="email"
-                  className="focus:border-yellow border border-[2px] border-[#EFEFEF] bg-transparent outline-none rounded py-[7px] px-[14px] font-rubik font-normal mt-[10px]"
-                  placeholder="example@gmail.com"
-                  {...register('email')}
-                />
-              </div>
-              <div className="flex flex-col mt-[25px] first:mt-0">
-                <span className="font-rubik font-normal text-black">Enter your name</span>
-                <input
-                  type="text"
-                  className="focus:border-yellow border border-[2px] border-white-3 bg-transparent outline-none rounded py-[7px] px-[14px] font-rubik font-normal mt-[10px]"
-                  placeholder="Scarlett Johansson"
-                  {...register('name')}
-                />
-              </div>
-              <div className="flex flex-col mt-[25px] first:mt-0">
-                <span className="font-rubik font-normal text-black">Enter your password</span>
-                <input
-                  type="password"
-                  className="focus:border-yellow border border-[2px] border-white-3 bg-transparent outline-none rounded py-[7px] px-[14px] font-rubik font-normal mt-[10px]"
-                  placeholder="atleast 8 characters"
-                  {...register('password')}
-                />
-              </div>
-              <div className="flex flex-col mt-[25px] first:mt-0">
-                <span className="font-rubik font-normal text-black">Repeat your password</span>
-                <input
-                  type="password"
-                  className="focus:border-yellow border border-[2px] border-white-3 bg-transparent outline-none rounded py-[7px] px-[14px] font-rubik font-normal mt-[10px]"
-                  placeholder="atleast 8 characters"
-                  {...register('confirmPassword')}
-                />
-              </div>
+              <FormInput
+                header="Enter your email address"
+                type="email"
+                placeholder="example@gmail.com"
+                register={register}
+                name="email"
+              />
+              <FormInput
+                header="Enter your name"
+                type="text"
+                placeholder="Scarlett Johansson"
+                register={register}
+                name="name"
+              />
+              <FormInput
+                header="Enter your password"
+                type="password"
+                placeholder="atleast 8 characters"
+                register={register}
+                name="password"
+              />
+              <FormInput
+                header="Confirm your password"
+                type="password"
+                placeholder="atleast 8 characters"
+                register={register}
+                name="confirmPassword"
+              />
               <div>
                 <div>
                   <input
@@ -134,12 +122,7 @@ const Signup = () => {
                     value="Sign Up"
                     className="cursor-pointer bg-blue font-rubik font-normal text-[18px] text-white-1 mt-[10px] w-full p-[10px] rounded-lg"
                   />
-                  <div className="flex items-center mt-[10px] justify-center">
-                    <input type="checkbox" {...register('agree')} />
-                    <a href="#" className="font-rubik font-normal text-black ml-[10px] underline">
-                      I agree with rules
-                    </a>
-                  </div>
+                  <FormCheckbox title="I agree with rules" register={register} name="agree" />
                 </div>
                 <div className="mt-[50px]">
                   <div className="w-full h-[1px] bg-white-3"></div>

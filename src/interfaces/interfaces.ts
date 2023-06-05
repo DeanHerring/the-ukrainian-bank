@@ -9,3 +9,11 @@ export interface IUser {
   password: string;
   agree: boolean;
 }
+
+export interface Person {
+  email: string;
+  name: string;
+  password: string;
+  confirmPassword: string;
+  agree: boolean;
+}

@@ -23,8 +23,8 @@ export const addUser = async (req: Request<any, any, IUser>, res: Response<IAddU
   } catch (err: any) {
     if (err.code === 'P2002' && err.meta?.target?.includes('email')) {
       res.json({ status: 0, err: 'Email уже занят' });
+    } else {
+      res.json({ status: 0, err: 'Внутренняя ошибка сервера' });
     }
-
-    res.json({ status: 0, err: 'Внутренняя ошибка сервера' });
   }
 };
