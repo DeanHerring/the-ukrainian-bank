@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { UseFormRegister } from 'react-hook-form';
-import { Person } from '@/interfaces/interfaces';
+import { SignupPerson } from '@/interfaces/interfaces';
 
 interface FormCheckboxProps {
   title: string;
-  register: UseFormRegister<Person>;
-  name: keyof Person;
+  register: UseFormRegister<SignupPerson>;
+  name: keyof SignupPerson;
 }
 
 const FormCheckbox: React.FC<FormCheckboxProps> = ({ title, register, name }) => {

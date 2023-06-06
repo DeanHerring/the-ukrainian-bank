@@ -1,6 +1,12 @@
-export interface IAddUserResponce {
+export interface AuthBodyResponce {
+  id: number;
+  balance: number;
+}
+
+export interface ApiResponce {
   status: number;
   err?: string;
+  body?: AuthBodyResponce;
 }
 
 export interface IUser {
@@ -10,10 +16,16 @@ export interface IUser {
   agree: boolean;
 }
 
-export interface Person {
+export interface SignupPerson {
   email: string;
   name: string;
   password: string;
   confirmPassword: string;
   agree: boolean;
+}
+
+// @TODO: Изменить на более уникальное название
+export interface LoginPerson {
+  email: string;
+  password: string;
 }

@@ -1,17 +1,17 @@
 import React from 'react';
 
 import { UseFormRegister } from 'react-hook-form';
-import { Person } from '@/interfaces/interfaces';
+import { SignupPerson } from '@/interfaces/interfaces';
 
-interface FormInputProps {
+interface SignupInputProps {
   header: string;
   type: string;
   placeholder: string;
-  register: UseFormRegister<Person>;
-  name: keyof Person;
+  register: UseFormRegister<SignupPerson>;
+  name: keyof SignupPerson;
 }
 
-const FormInput: React.FC<FormInputProps> = ({ header, type, placeholder, register, name }) => {
+const SignupInput: React.FC<SignupInputProps> = ({ header, type, placeholder, register, name }) => {
   return (
     <div className="flex flex-col mt-[25px] first:mt-0">
       <span className="font-rubik font-normal text-black">{header}</span>
@@ -25,4 +25,4 @@ const FormInput: React.FC<FormInputProps> = ({ header, type, placeholder, regist
   );
 };
 
-export default FormInput;
+export default SignupInput;

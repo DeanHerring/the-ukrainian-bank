@@ -2,14 +2,14 @@ import logo from '@/images/logo.svg';
 import classNames from 'classnames';
 import React from 'react';
 import FormHeader from '@/components/Universal/FormHeader';
-import FormInput from '@/components/Universal/FormInput';
+import SignupInput from './SignupInput';
 import FormCheckbox from '@/components/Universal/FormCheckbox';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAddUserMutation } from '@/redux/api/api';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import { Person } from '@/interfaces/interfaces';
+import { SignupPerson } from '@/interfaces/interfaces';
 
 import * as yup from 'yup';
 import s from './Signup.module.scss';
@@ -45,9 +45,9 @@ const Signup: React.FC = () => {
     handleSubmit,
     setError,
     formState: { errors },
-  } = useForm<Person>({ resolver: yupResolver(schema) });
+  } = useForm<SignupPerson>({ resolver: yupResolver(schema) });
 
-  const onSubmit: SubmitHandler<Person> = (data) => {
+  const onSubmit: SubmitHandler<SignupPerson> = (data) => {
     new Promise(async (resolve, reject) => {
       const result = await addUser(data).unwrap();
 
@@ -87,28 +87,28 @@ const Signup: React.FC = () => {
               </p>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <FormInput
+              <SignupInput
                 header="Enter your email address"
                 type="email"
                 placeholder="example@gmail.com"
                 register={register}
                 name="email"
               />
-              <FormInput
+              <SignupInput
                 header="Enter your name"
                 type="text"
                 placeholder="Scarlett Johansson"
                 register={register}
                 name="name"
               />
-              <FormInput
+              <SignupInput
                 header="Enter your password"
                 type="password"
                 placeholder="atleast 8 characters"
                 register={register}
                 name="password"
               />
-              <FormInput
+              <SignupInput
                 header="Confirm your password"
                 type="password"
                 placeholder="atleast 8 characters"

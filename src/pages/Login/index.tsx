@@ -1,11 +1,57 @@
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import logo from '../../images/logo.svg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import logo from '@/images/logo.svg';
 import classNames from 'classnames';
 import s from './Login.module.scss';
+import * as yup from 'yup';
+import FormHeader from '@/components/Universal/FormHeader';
+import LoginInput from './LoginInput';
 
-const Login = () => {
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useAuthUserMutation } from '@/redux/api/api';
+import { LoginPerson } from '@/interfaces/interfaces';
+
+const schema = yup.object({
+  email: yup.string().email('[EMAIL]: Невалидная почта.').required('[EMAIL]: Поле должно быть заполнено'),
+  password: yup
+    .string()
+    .required('[PASSWORD]: Поле должно быть заполнено')
+    .min(8, '[PASSWORD]: Минимум 8 символов')
+    .max(40, '[PASSWORD]: Максимум 40 символов'),
+});
+
+// @TODO: Супер важно избавиться от дублирования компонентов SignupInput и LoginInput и сделать уникальный FormInput, который сможет принимать интерфейсы как SignupPerson, так и LoginPerson
+
+const Login: React.FC = () => {
+  const [authUser] = useAuthUserMutation();
+  const navigate = useNavigate();
+
+  const {
+    register,
+    setError,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginPerson>({ resolver: yupResolver(schema) });
+
+  const onSubmit: SubmitHandler<LoginPerson> = (data) => {
+    console.log(data);
+    new Promise(async (resolve, reject) => {
+      const result = await authUser(data).unwrap();
+
+      result.status ? resolve(result) : reject(result.err);
+    })
+      .then((q: any) => {
+        localStorage.id = q.body.id;
+        localStorage.balance = q.body.balance;
+
+        navigate('/');
+      })
+      .catch((w) => {
+        setError('email', { type: 'custom', message: w });
+      });
+  };
+
   return (
     <div className="min-h-screen w-full bg-white-2">
       <div className={classNames(s.login, 'flex')}>
@@ -17,42 +63,38 @@ const Login = () => {
             </Link>
           </header>
           <div className="w-full flex flex-col justify-center">
-            <div className="my-[50px]">
-              <h1 className="font-rubik font-bold text-[40px] font-bold text-black">Log In</h1>
-              <h3 className="font-rubik font-normal text-black/30">
-                Log in with your data that you entered during your registration
-              </h3>
+            <FormHeader header="Log In" description="Log in with your data that you entered during your registration" />
+
+            <div
+              className={classNames(
+                !Object.values(errors).length && 'hidden',
+                'w-full py-[5px] px-[15px] rounded-md border border-red bg-red/30 mb-[15px]',
+              )}
+            >
+              <p className="font-rubik font-normal text-black">
+                {Object.values(errors).length && Object.values(errors)[0].message}
+              </p>
             </div>
-            <form>
-              <div className="flex flex-col mt-[25px] first:mt-0">
-                <span className="font-rubik font-normal text-black">Enter your email address</span>
-                <input
-                  type="text"
-                  className="focus:border-yellow border border-[2px] border-[#EFEFEF] bg-transparent outline-none rounded py-[7px] px-[14px] font-rubik font-normal mt-[10px]"
-                  placeholder="example@gmail.com"
-                />
-              </div>
-              <div className="flex flex-col mt-[25px] first:mt-0">
-                <span className="font-rubik font-normal text-black">Enter your password</span>
-                <input
-                  type="password"
-                  className="focus:border-yellow border border-[2px] border-white-3 bg-transparent outline-none rounded py-[7px] px-[14px] font-rubik font-normal mt-[10px]"
-                  placeholder="atleast 8 characters"
-                />
-              </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <LoginInput
+                header="Enter your email address"
+                type="email"
+                placeholder="example@gmail.com"
+                register={register}
+                name="email"
+              />
+              <LoginInput
+                header="Enter your password"
+                type="password"
+                placeholder="atleast 8 characters"
+                register={register}
+                name="password"
+              />
               <div>
                 <div>
                   <button className="bg-blue font-rubik font-normal text-[18px] text-white-1 mt-[10px] w-full p-[10px] rounded-lg">
                     Log In
                   </button>
-                  <div className="flex items-center mt-[10px] justify-center">
-                    <div className="w-[25px] h-[25px] rounded border border-[2px] border-blue flex justify-center items-center cursor-pointer">
-                      <FontAwesomeIcon icon={faCheck} className="text-blue" />
-                    </div>
-                    <a href="#" className="font-rubik font-normal text-black ml-[10px] underline">
-                      I agree with rules
-                    </a>
-                  </div>
                 </div>
                 <div className="mt-[50px]">
                   <div className="w-full h-[1px] bg-white-3"></div>

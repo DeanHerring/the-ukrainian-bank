@@ -10,6 +10,7 @@ const PORT: number = 3001;
 
 // Controllers
 import { addUser } from './controllers/addUser.ts';
+import { authUser } from './controllers/authUser.ts';
 
 // Use
 app.use(cors());
@@ -18,10 +19,11 @@ app.use(bodyParser.json());
 app.use('/', router);
 
 // GET
-// router.get('/getUser/:id', getUser);
+// router.get('/authUser/:id', authUser);
 
 // POST
 router.post('/addUser', addUser);
+router.post('/authUser', authUser);
 
 // Other
 app

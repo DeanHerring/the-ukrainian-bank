@@ -16,4 +16,11 @@ model Users {
   name     String
   password String
   status   Boolean @default(false)
+  balance  Int     @default(0)
+}
+
+model Testing {
+  id   Int     @id @default(autoincrement())
+  name String
+  age  Decimal
 }
