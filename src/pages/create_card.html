@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="/css/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/main.min.css" />
+    <title>The Ukrainian Bank</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="min-h-screen w-full bg-white-2">
+        <!-- Header -->
+        <header class="w-full bg-white-1 px-[5%] flex justify-between items-center">
+          <div class="flex items-center py-[15px]">
+            <img src="../images/logo.svg" alt="" />
+            <h1 class="font-rubik font-medium text-black text-[24px] ml-[10px]">The Ukrainian Bank</h1>
+          </div>
+          <div class="hidden flex items-center ml-[15px] py-[15px]">
+            <div>
+              <h3 class="font-rubik font-normal text-[17px] text-black/75 text-right">Balance</h3>
+              <h1 class="font-rubik font-medium text-[17px] text-black">$182,192.00</h1>
+            </div>
+            <div class="ml-[10px]">
+              <div>
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/d/da/Trevor_Philips.Grand_Theft_Auto_V.jpg"
+                  class="border border-white-2 border-[3px] w-[50px] h-[50px] rounded-full rounded-full"
+                />
+              </div>
+              <!-- @TODO: Дропдовн блок на реакте -->
+            </div>
+          </div>
+          <div class="header__hamburger cursor-pointer">
+            <i class="fa-solid fa-bars text-[30px] text-black"></i>
+          </div>
+        </header>
+
+        <section class="pb-[50px]">
+          <div class="max-w-[90%] w-[1300px] mx-auto">
+            <div class="my-[50px]">
+              <header>
+                <h1 class="font-rubik font-medium text-black text-[32px]">Create a digital bank card</h1>
+              </header>
+              <form class="mt-[50px]">
+                <div class="mt-[15px] first:mt-0">
+                  <h3 class="font-rubik text-black">Enter Your Full Name</h3>
+                  <input
+                    type="text"
+                    placeholder="Stepan Neretin Stepanovich"
+                    class="w-full py-[10px] px-[15px] rounded-md mt-[5px] font-rubik outline-none"
+                  />
+                </div>
+                <div class="mt-[15px] first:mt-0 grid grid-cols-31 gap-[15px] md-800:grid-cols-2 sm-500:grid-cols-1">
+                  <div>
+                    <h3 class="font-rubik text-black">Card Type</h3>
+                    <select
+                      type="text"
+                      placeholder="Stepan Neretin Stepanovich"
+                      class="w-full py-[10px] px-[15px] rounded-md mt-[5px] font-rubik outline-none"
+                    >
+                      <option value="Debit">Debit</option>
+                      <option value="Credit">Credit</option>
+                    </select>
+                  </div>
+                  <div>
+                    <h3 class="font-rubik text-black">Currency</h3>
+                    <select
+                      type="text"
+                      placeholder="Stepan Neretin Stepanovich"
+                      class="w-full py-[10px] px-[15px] rounded-md mt-[5px] font-rubik outline-none"
+                    >
+                      <option value="USD">USD</option>
+                      <option value="UAH">UAH</option>
+                      <option value="EUR">EUR</option>
+                      <option value="PLN">PLN</option>
+                      <option value="JPY">JPY</option>
+                    </select>
+                  </div>
+                  <div>
+                    <h3 class="font-rubik text-black">Pin Code</h3>
+                    <input
+                      type="text"
+                      placeholder="2371"
+                      class="w-full py-[10px] px-[15px] rounded-md mt-[5px] font-rubik outline-none"
+                    />
+                  </div>
+                  <div>
+                    <h3 class="font-rubik text-black">Tariff Plan</h3>
+                    <select class="w-full py-[10px] px-[15px] rounded-md mt-[5px] font-rubik outline-none">
+                      <option value="Standart">Standart</option>
+                      <option value="VIP">VIP</option>
+                      <option value="Super Vip+++">Super Vip+++</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="mt-[15px] first:mt-0 grid grid-cols-2 gap-[15px] sm-500:grid-cols-1">
+                  <div class="mt-[15px]">
+                    <h3 class="font-rubik text-black">Month Limit</h3>
+                    <input
+                      type="text"
+                      placeholder="$100,000"
+                      class="w-full py-[10px] px-[15px] rounded-md mt-[5px] font-rubik outline-none"
+                    />
+                  </div>
+                  <div class="mt-[15px]">
+                    <h3 class="font-rubik text-black">Day Limit</h3>
+                    <input
+                      type="text"
+                      placeholder="$25,000"
+                      class="w-full py-[10px] px-[15px] rounded-md mt-[5px] font-rubik outline-none"
+                    />
+                  </div>
+                </div>
+                <div class="mt-[15px] first:mt-0">
+                  <h3 class="font-rubik text-black">Enter Your Phone</h3>
+                  <div class="bg-white-1 flex rounded-md py-[10px] px-[15px] mt-[5px]">
+                    <div class="flex items-center">
+                      <img src="/images/ukrainian_flag.svg" alt="" class="w-[30px] h-[18px] rounded mr-[10px]" />
+                      <i class="fa-solid fa-caret-up text-black"></i>
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="+3273938376"
+                      class="w-full font-rubik outline-none ml-[10px] bg-transparent"
+                    />
+                  </div>
+                </div>
+                <div class="mt-[15px] first:mt-0">
+                  <h3 class="font-rubik text-black">Enter Your Email</h3>
+                  <input
+                    type="text"
+                    placeholder="example@gmail.com"
+                    class="w-full py-[10px] px-[15px] rounded-md mt-[5px] font-rubik outline-none"
+                  />
+                </div>
+                <div class="mt-[15px] first:mt-0">
+                  <h3 class="font-rubik text-black">Upload your password</h3>
+                  <div class="flex items-center">
+                    <button class="bg-white-1 rounded-md px-[15px] py-[10px] font-rubik text-black mt-[5px]">
+                      Upload
+                    </button>
+                    <h3 class="font-rubik text-black ml-[10px]">your_ebalo.jpg</h3>
+                  </div>
+                </div>
+                <div class="mt-[15px] first:mt-0">
+                  <h3 class="font-rubik text-black">
+                    Card Backround <span class="font-rubik text-black/50">(optional)</span>
+                  </h3>
+                  <!-- Слайдер из беграундов -->
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
