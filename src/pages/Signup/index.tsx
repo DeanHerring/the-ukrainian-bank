@@ -13,6 +13,7 @@ import { SignupPerson } from '@/interfaces/interfaces';
 
 import * as yup from 'yup';
 import s from './Signup.module.scss';
+import Alerts from '@/components/Universal/Alerts';
 
 const schema = yup.object({
   email: yup.string().email('[EMAIL]: Невалидная почта.').required('[EMAIL]: Поле должно быть заполнено'),
@@ -46,6 +47,7 @@ const Signup: React.FC = () => {
     setError,
     formState: { errors },
   } = useForm<SignupPerson>({ resolver: yupResolver(schema) });
+  const err = Object.values(errors);
 
   const onSubmit: SubmitHandler<SignupPerson> = (data) => {
     new Promise(async (resolve, reject) => {
@@ -76,16 +78,7 @@ const Signup: React.FC = () => {
               header="Sign Up"
               description="Log in with your data that you entered during your registration"
             />
-            <div
-              className={classNames(
-                !Object.values(errors).length && 'hidden',
-                'w-full py-[5px] px-[15px] rounded-md border border-red bg-red/30 mb-[15px]',
-              )}
-            >
-              <p className="font-rubik font-normal text-black">
-                {Object.values(errors).length && Object.values(errors)[0].message}
-              </p>
-            </div>
+            {err.length ? <Alerts text={err[0].message} /> : ''}
             <form onSubmit={handleSubmit(onSubmit)}>
               <SignupInput
                 header="Enter your email address"

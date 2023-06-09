@@ -3,10 +3,34 @@ export interface AuthBodyResponce {
   balance: number;
 }
 
-export interface ApiResponce {
+export interface DefaultApiResponce {
   status: number;
   err?: string;
+}
+
+export interface ApiResponce extends DefaultApiResponce {
   body?: AuthBodyResponce;
+}
+
+export interface Countries {
+  country: string;
+  flag: string;
+  dialing_code: number;
+}
+
+export interface Tariffs {
+  id: number;
+  title: string;
+  monthly_limit: number;
+  daily_limit: number;
+}
+
+export interface ApiCountriesResponce extends DefaultApiResponce {
+  body?: Countries[];
+}
+
+export interface ApiTarrifsResponce extends DefaultApiResponce {
+  body?: Tariffs[];
 }
 
 export interface IUser {
@@ -28,4 +52,8 @@ export interface SignupPerson {
 export interface LoginPerson {
   email: string;
   password: string;
+}
+
+export interface ApiPassportResponce extends DefaultApiResponce {
+  filename?: string;
 }

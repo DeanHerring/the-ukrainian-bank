@@ -24,3 +24,41 @@ model Testing {
   name String
   age  Decimal
 }
+
+model Aviable_Countries {
+  id           Int    @id @default(autoincrement())
+  country      String
+  flag         String
+  dialing_code Int
+  status       Int    @default(1)
+}
+
+model Tariffs {
+  id            Int     @id @default(autoincrement())
+  title         String
+  monthly_limit Int
+  daily_limit   Int
+  available     Boolean @default(false)
+}
+
+model Cards {
+  id             Int      @id @default(autoincrement())
+  full_name      String
+  type           String
+  createdAt      DateTime @default(now())
+  expiration     DateTime @default(dbgenerated("NOW() + interval '3 years'"))
+  currency       String
+  publisher      String
+  balance        Decimal
+  address        String
+  pin_code       String
+  monthly_limit  Int
+  background     String
+  daily_limit    Int
+  available      Boolean  @default(true)
+  passport       String
+  phone          String
+  email          String
+  tariff_plan_id Int
+  country        String
+}

@@ -16,15 +16,23 @@ export default {
         blue: '#2684FF',
       },
       backgroundImage: {
-        'card-1': "url('../images/card1.svg')",
-        'card-2': "url('../images/card2.svg')",
-        'card-3': "url('../images/card3.svg')",
+        'card-1': "url('src/images/card1.svg')",
+        'card-2': "url('src/images/card2.svg')",
+        'card-3': "url('src/images/card3.svg')",
         login: "url('src/images/login.jpg')",
+      },
+      gridTemplateColumns: {
+        31: 'repeat(3, 1fr) 3fr',
       },
     },
     fontFamily: {
       rubik: ['Rubik', 'sans-serif'],
       chivo: ['Chivo', 'sans-serif'],
+    },
+    screens: {
+      sm: { max: '600px' },
+      'md-800': { max: '800px' },
+      'sm-500': { max: '500px' },
     },
   },
   plugins: [],

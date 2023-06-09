@@ -11,6 +11,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAuthUserMutation } from '@/redux/api/api';
 import { LoginPerson } from '@/interfaces/interfaces';
+import Alerts from '@/components/Universal/Alerts';
 
 const schema = yup.object({
   email: yup.string().email('[EMAIL]: Невалидная почта.').required('[EMAIL]: Поле должно быть заполнено'),
@@ -33,6 +34,7 @@ const Login: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginPerson>({ resolver: yupResolver(schema) });
+  const err = Object.values(errors);
 
   const onSubmit: SubmitHandler<LoginPerson> = (data) => {
     console.log(data);
@@ -65,16 +67,8 @@ const Login: React.FC = () => {
           <div className="w-full flex flex-col justify-center">
             <FormHeader header="Log In" description="Log in with your data that you entered during your registration" />
 
-            <div
-              className={classNames(
-                !Object.values(errors).length && 'hidden',
-                'w-full py-[5px] px-[15px] rounded-md border border-red bg-red/30 mb-[15px]',
-              )}
-            >
-              <p className="font-rubik font-normal text-black">
-                {Object.values(errors).length && Object.values(errors)[0].message}
-              </p>
-            </div>
+            {err.length ? <Alerts text={err[0].message} /> : ''}
+
             <form onSubmit={handleSubmit(onSubmit)}>
               <LoginInput
                 header="Enter your email address"

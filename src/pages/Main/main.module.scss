@@ -1,0 +1,23 @@
+.transaction,
+.transfers {
+  @media screen and (max-width: 600px) {
+    background-color: #f6f7f9;
+    padding: 10px;
+    flex-direction: column;
+    border-radius: 10px;
+    &__icon,
+    &__ellipsis {
+      display: none;
+      background-color: red;
+    }
+    &__type,
+    &__date,
+    &__amount {
+      align-self: flex-start;
+      margin: 0;
+      h3 {
+        margin: 0;
+      }
+    }
+  }
+}
