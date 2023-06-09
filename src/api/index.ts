@@ -16,6 +16,7 @@ import { authUser } from './controllers/authUser.ts';
 import { getCountryDialingCodes } from './controllers/getCountryDialingCodes.ts';
 import { getTariffs } from './controllers/getTarrifs.ts';
 import { uploadPassport } from './controllers/uploadPassport.ts';
+import { createCard } from './controllers/createCard.ts';
 
 // Use
 app.use(cors());
@@ -33,11 +34,7 @@ router.get('/getTariffs', getTariffs);
 router.post('/addUser', addUser);
 router.post('/authUser', authUser);
 router.post('/uploadPassport', upload.single('passport'), uploadPassport);
-
-// app.post('/uploadPassport', upload.single('image'), (req, res) => {
-//   console.log('New Upload Passport: ', req.file);
-//   res.status(200);
-// });
+router.post('/createCard', createCard);
 
 // Other
 app

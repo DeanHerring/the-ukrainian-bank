@@ -9,12 +9,17 @@ import 'swiper/css/mousewheel';
 import classNames from 'classnames';
 import Popover from '@mui/material/Popover';
 import { cardBackgrounds } from '@/images/images';
-import { useGetCountryDialingCodesQuery, useGetTariffsQuery, useUploadPassportMutation } from '@/redux/api/api';
+import {
+  useGetCountryDialingCodesQuery,
+  useGetTariffsQuery,
+  useUploadPassportMutation,
+  useCreateCardMutation,
+} from '@/redux/api/api';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Alerts from '@/components/Universal/Alerts';
-import { Tariffs } from '@/interfaces/interfaces';
+import { Tariffs, Card } from '@/interfaces/interfaces';
 
 interface Country {
   flag: string;
@@ -80,7 +85,9 @@ const CreateCard: React.FC = () => {
 
   const { data: countries } = useGetCountryDialingCodesQuery(null);
   const { data: tariffs } = useGetTariffsQuery(null);
+
   const [uploadPassport] = useUploadPassportMutation();
+  const [createCard] = useCreateCardMutation();
 
   const changeDialingCode = (country: Country): void => {
     setDialingCode(country);
@@ -114,8 +121,14 @@ const CreateCard: React.FC = () => {
     }
   };
 
-  const onSubmit: SubmitHandler<any> = (data): void => {
+  const onSubmit: SubmitHandler<Card> = (data): void => {
     console.log('Всё гуд!: ', data);
+
+    new Promise(async (resolve, reject) => {
+      const result = await createCard({ ...data, owner_id: 1 }).unwrap();
+
+      console.log(result);
+    });
   };
 
   const changeActiveTariff = (e: React.ChangeEvent<HTMLSelectElement>): void => {
@@ -155,6 +168,7 @@ const CreateCard: React.FC = () => {
               type="text"
               placeholder="Stepan Neretin Stepanovich"
               className="w-full py-[10px] px-[15px] rounded-md mt-[5px] font-rubik outline-none"
+              defaultValue="Stepan Neretin Stepanovich"
               {...register('full_name')}
             />
           </div>
@@ -162,7 +176,6 @@ const CreateCard: React.FC = () => {
             <div>
               <h3 className="font-rubik text-black">Card Type</h3>
               <select
-                placeholder="Stepan Neretin Stepanovich"
                 className="w-full py-[10px] px-[15px] rounded-md mt-[5px] font-rubik outline-none"
                 {...register('card_type')}
               >
@@ -178,7 +191,6 @@ const CreateCard: React.FC = () => {
             <div>
               <h3 className="font-rubik text-black">Currency</h3>
               <select
-                placeholder="Stepan Neretin Stepanovich"
                 className="w-full py-[10px] px-[15px] rounded-md mt-[5px] font-rubik outline-none"
                 {...register('currency')}
               >
@@ -196,6 +208,7 @@ const CreateCard: React.FC = () => {
               <input
                 type="text"
                 placeholder="2371"
+                defaultValue="999999"
                 className="w-full py-[10px] px-[15px] rounded-md mt-[5px] font-rubik outline-none"
                 {...register('pin_code')}
               />
@@ -293,6 +306,7 @@ const CreateCard: React.FC = () => {
             <input
               type="text"
               placeholder="example@gmail.com"
+              defaultValue="example@gmail.com"
               className="w-full py-[10px] px-[15px] rounded-md mt-[5px] font-rubik outline-none"
               {...register('email')}
             />

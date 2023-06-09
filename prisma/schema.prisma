@@ -41,24 +41,29 @@ model Tariffs {
   available     Boolean @default(false)
 }
 
+model Currencies {
+  id    Int    @id @default(autoincrement())
+  title String
+}
+
 model Cards {
   id             Int      @id @default(autoincrement())
   full_name      String
   type           String
   createdAt      DateTime @default(now())
-  expiration     DateTime @default(dbgenerated("NOW() + interval '3 years'"))
+  expiration     DateTime
   currency       String
-  publisher      String
-  balance        Decimal
+  publisher      String   @default("The Ukrainian Bank")
+  balance        Decimal  @default(0.00)
   address        String
   pin_code       String
   monthly_limit  Int
-  background     String
+  background     String   @default("/src/images/card_backgrounds/default_background.svg")
   daily_limit    Int
   available      Boolean  @default(true)
   passport       String
   phone          String
   email          String
   tariff_plan_id Int
-  country        String
+  owner_id       Int
 }

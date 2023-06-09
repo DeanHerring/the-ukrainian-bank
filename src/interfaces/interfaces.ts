@@ -57,3 +57,23 @@ export interface LoginPerson {
 export interface ApiPassportResponce extends DefaultApiResponce {
   filename?: string;
 }
+
+export interface Card {
+  full_name: string;
+  type: string;
+  expiration: Date;
+  currency: string;
+  publisher?: string;
+  balance: number;
+  address: string;
+  pin_code: string;
+  monthly_limit: number;
+  background?: string;
+  daily_limit: number;
+  available?: boolean;
+  passport: string;
+  phone: string;
+  email: string;
+  tariff_plan_id: number;
+  owner_id: number;
+}

@@ -6,6 +6,7 @@ import {
   ApiCountriesResponce,
   ApiTarrifsResponce,
   ApiPassportResponce,
+  Card,
 } from '@/interfaces/interfaces';
 
 export const api = createApi({
@@ -41,6 +42,13 @@ export const api = createApi({
         body,
       }),
     }),
+    createCard: build.mutation<any, Card>({
+      query: (body: Card) => ({
+        url: `createCard`,
+        method: 'POST',
+        body,
+      }),
+    }),
   }),
 });
 
@@ -49,5 +57,6 @@ export const {
   useAuthUserMutation,
   useGetTariffsQuery,
   useUploadPassportMutation,
+  useCreateCardMutation,
   useGetCountryDialingCodesQuery,
 } = api;
