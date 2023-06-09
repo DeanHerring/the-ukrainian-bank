@@ -61,7 +61,7 @@ export interface ApiPassportResponce extends DefaultApiResponce {
 export interface Card {
   full_name: string;
   type: string;
-  expiration: Date;
+  expiration: string;
   currency: string;
   publisher?: string;
   balance: number;
@@ -76,4 +76,18 @@ export interface Card {
   email: string;
   tariff_plan_id: number;
   owner_id: number;
+}
+
+export interface CardResponce {
+  publisher: string;
+  currency: string;
+  address: string[];
+  pin_code: string;
+  type: string;
+  full_name: string;
+  expiration: string;
+}
+
+export interface ApiCardResponce extends DefaultApiResponce {
+  body?: CardResponce;
 }

@@ -12,15 +12,6 @@ CREATE TABLE `Users` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Testing` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(191) NOT NULL,
-    `age` DECIMAL(65, 30) NOT NULL,
-
-    PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
 CREATE TABLE `Aviable_Countries` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `country` VARCHAR(191) NOT NULL,
@@ -55,8 +46,8 @@ CREATE TABLE `Cards` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `full_name` VARCHAR(191) NOT NULL,
     `type` VARCHAR(191) NOT NULL,
-    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `expiration` DATETIME(3) NOT NULL,
+    `createdAt` VARCHAR(191) NOT NULL,
+    `expiration` VARCHAR(191) NOT NULL,
     `currency` VARCHAR(191) NOT NULL,
     `publisher` VARCHAR(191) NOT NULL DEFAULT 'The Ukrainian Bank',
     `balance` DECIMAL(65, 30) NOT NULL DEFAULT 0.00,
@@ -71,6 +62,15 @@ CREATE TABLE `Cards` (
     `email` VARCHAR(191) NOT NULL,
     `tariff_plan_id` INTEGER NOT NULL,
     `owner_id` INTEGER NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `Testing` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `date` VARCHAR(191) NOT NULL,
+    `money` DOUBLE NOT NULL DEFAULT 0.00,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

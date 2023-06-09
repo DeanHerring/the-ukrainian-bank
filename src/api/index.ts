@@ -17,6 +17,7 @@ import { getCountryDialingCodes } from './controllers/getCountryDialingCodes.ts'
 import { getTariffs } from './controllers/getTarrifs.ts';
 import { uploadPassport } from './controllers/uploadPassport.ts';
 import { createCard } from './controllers/createCard.ts';
+import { tester } from './controllers/tester.ts';
 
 // Use
 app.use(cors());
@@ -35,6 +36,9 @@ router.post('/addUser', addUser);
 router.post('/authUser', authUser);
 router.post('/uploadPassport', upload.single('passport'), uploadPassport);
 router.post('/createCard', createCard);
+
+// USE
+router.use('/tester', tester);
 
 // Other
 app

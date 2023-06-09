@@ -20,6 +20,7 @@ import * as yup from 'yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import Alerts from '@/components/Universal/Alerts';
 import { Tariffs, Card } from '@/interfaces/interfaces';
+import { useNavigate } from 'react-router-dom';
 
 interface Country {
   flag: string;
@@ -36,8 +37,8 @@ const schema = yup.object({
     .number()
     .positive()
     .integer()
-    .min(100000, '[pin code]: 6 символов')
-    .max(999999, '[pin code]: 6 символов')
+    .min(1000, '[pin code]: 4 символа')
+    .max(9999, '[pin code]: 4 символа')
     .typeError('[pin code]: Неверный формат пин-кода')
     .required('[pin code]: Поле должно быть заполненно'),
   tariff_plan_id: yup.number().default(1).required('[tariff plan]: Поле должно быть заполненно'),
@@ -79,6 +80,7 @@ const CreateCard: React.FC = () => {
   const [passport, setPassport] = useState<string>('Загрузите фотографию');
 
   const uploadFileRef = useRef<HTMLInputElement | null>(null);
+  const navigate = useNavigate();
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
@@ -125,10 +127,12 @@ const CreateCard: React.FC = () => {
     console.log('Всё гуд!: ', data);
 
     new Promise(async (resolve, reject) => {
-      const result = await createCard({ ...data, owner_id: 1 }).unwrap();
+      const result = await createCard({ ...data, owner_id: parseInt(localStorage.id) }).unwrap();
 
-      console.log(result);
-    });
+      result.status ? resolve(result) : reject(result.err);
+    })
+      .then(() => navigate('/'))
+      .catch((err) => console.log('Create Card Error: ', err));
   };
 
   const changeActiveTariff = (e: React.ChangeEvent<HTMLSelectElement>): void => {
@@ -208,7 +212,7 @@ const CreateCard: React.FC = () => {
               <input
                 type="text"
                 placeholder="2371"
-                defaultValue="999999"
+                defaultValue="2723"
                 className="w-full py-[10px] px-[15px] rounded-md mt-[5px] font-rubik outline-none"
                 {...register('pin_code')}
               />

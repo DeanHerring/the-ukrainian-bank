@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = []
 }
 
 datasource db {
@@ -17,12 +18,6 @@ model Users {
   password String
   status   Boolean @default(false)
   balance  Int     @default(0)
-}
-
-model Testing {
-  id   Int     @id @default(autoincrement())
-  name String
-  age  Decimal
 }
 
 model Aviable_Countries {
@@ -47,23 +42,29 @@ model Currencies {
 }
 
 model Cards {
-  id             Int      @id @default(autoincrement())
+  id             Int     @id @default(autoincrement())
   full_name      String
   type           String
-  createdAt      DateTime @default(now())
-  expiration     DateTime
+  createdAt      String
+  expiration     String
   currency       String
-  publisher      String   @default("The Ukrainian Bank")
-  balance        Decimal  @default(0.00)
+  publisher      String  @default("The Ukrainian Bank")
+  balance        Decimal @default(0.00)
   address        String
   pin_code       String
   monthly_limit  Int
-  background     String   @default("/src/images/card_backgrounds/default_background.svg")
+  background     String  @default("/src/images/card_backgrounds/default_background.svg")
   daily_limit    Int
-  available      Boolean  @default(true)
+  available      Boolean @default(true)
   passport       String
   phone          String
   email          String
   tariff_plan_id Int
   owner_id       Int
+}
+
+model Testing {
+  id    Int    @id @default(autoincrement())
+  date  String
+  money Float  @default(0.00)
 }

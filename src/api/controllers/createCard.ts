@@ -1,15 +1,16 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 
-import { Card } from '@/interfaces/interfaces';
+import { Card, ApiCardResponce } from '@/interfaces/interfaces';
 
 const prisma = new PrismaClient();
 
-export const createCard = async (req: Request<Card>, res: Response<any>): Promise<void> => {
-  console.log(req.body);
-
-  const currentDate = new Date();
-  const expirationDate = new Date(currentDate.getFullYear() + 3, currentDate.getMonth(), currentDate.getDate());
+export const createCard = async (req: Request<Card>, res: Response<ApiCardResponce>): Promise<void> => {
+  const currentDate: Date = new Date();
+  const month: string = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const year: string = String(currentDate.getFullYear()).slice(-2);
+  const createDate: string = `${month}/${year}`;
+  const expirationDate: string = `${month}/${parseInt(year) + 3}`;
 
   const addressGen = (): string => {
     let randomNumber: string = '';
@@ -30,6 +31,7 @@ export const createCard = async (req: Request<Card>, res: Response<any>): Promis
     data: {
       full_name: req.body.full_name,
       type: req.body.card_type,
+      createdAt: createDate,
       expiration: expirationDate,
       currency: req.body.currency,
       balance: 0.0,
@@ -46,7 +48,20 @@ export const createCard = async (req: Request<Card>, res: Response<any>): Promis
     },
   });
 
-  console.log(card);
+  // const cardToChunks = (address: string): string[] => {
+  //   const result: string[] = [];
 
-  res.status(200);
+  //   for (let i: number = 0; i < address.length; i += 4) {
+  //     const chunk = address.substring(i, i + 4);
+  //     result.push(chunk);
+  //   }
+
+  //   return result;
+  // };
+
+  // const chunkAddress = cardToChunks(card.address);
+
+  card
+    ? res.json({ status: 1 })
+    : res.json({ status: 0, err: 'Случился какой-то пиздосевич пиздосян во время генерации карты' });
 };

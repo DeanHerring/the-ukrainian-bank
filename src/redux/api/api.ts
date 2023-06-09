@@ -7,6 +7,7 @@ import {
   ApiTarrifsResponce,
   ApiPassportResponce,
   Card,
+  ApiCardResponce,
 } from '@/interfaces/interfaces';
 
 export const api = createApi({
@@ -42,7 +43,7 @@ export const api = createApi({
         body,
       }),
     }),
-    createCard: build.mutation<any, Card>({
+    createCard: build.mutation<ApiCardResponce, Card>({
       query: (body: Card) => ({
         url: `createCard`,
         method: 'POST',

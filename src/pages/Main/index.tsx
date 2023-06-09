@@ -10,6 +10,7 @@ import 'swiper/css/mousewheel';
 
 import Header from '@/components/Universal/Header';
 import Container from '@/components/Universal/Container';
+import { Link } from 'react-router-dom';
 
 const Main: React.FC = () => {
   return (
@@ -31,13 +32,16 @@ const Main: React.FC = () => {
 
           <Swiper spaceBetween={30} slidesPerView="auto" className="mt-[20px]">
             <SwiperSlide className="flex flex-col cursor-pointer justify-center items-center w-[480px] h-[300px] rounded-[25px] bg-black/50 p-[25px] border border-[10px] border-white-3 border-double">
-              <h1 className="font-rubik text-white-1 text-3xl">Создать новую карту</h1>
+              <Link to="/create_card">
+                <h1 className="font-rubik text-white-1 text-3xl">Создать новую карту</h1>
+              </Link>
             </SwiperSlide>
+
             {[...new Array(5)].map((_, index) => {
               return (
                 <SwiperSlide
                   key={index}
-                  className="flex flex-col cursor-pointer justify-between w-[480px] h-[300px] rounded-[25px] bg-red-500 bg-card-2 bg-cover p-[25px]"
+                  className="flex flex-col cursor-pointer justify-between w-[480px] h-[300px] rounded-[25px] bg-card-2 bg-cover p-[25px]"
                 >
                   <header className="flex items-center justify-between">
                     <h3 className="font-chivo text-white-1 font-normal text-[21px]">The Ukrainian Bank</h3>
