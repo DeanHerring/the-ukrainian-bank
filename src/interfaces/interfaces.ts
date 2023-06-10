@@ -1,17 +1,3 @@
-export interface AuthBodyResponce {
-  id: number;
-  balance: number;
-}
-
-export interface DefaultApiResponce {
-  status: number;
-  err?: string;
-}
-
-export interface ApiResponce extends DefaultApiResponce {
-  body?: AuthBodyResponce;
-}
-
 export interface Countries {
   country: string;
   flag: string;
@@ -23,14 +9,6 @@ export interface Tariffs {
   title: string;
   monthly_limit: number;
   daily_limit: number;
-}
-
-export interface ApiCountriesResponce extends DefaultApiResponce {
-  body?: Countries[];
-}
-
-export interface ApiTarrifsResponce extends DefaultApiResponce {
-  body?: Tariffs[];
 }
 
 export interface IUser {
@@ -48,14 +26,9 @@ export interface SignupPerson {
   agree: boolean;
 }
 
-// @TODO: Изменить на более уникальное название
 export interface LoginPerson {
   email: string;
   password: string;
-}
-
-export interface ApiPassportResponce extends DefaultApiResponce {
-  filename?: string;
 }
 
 export interface Card {
@@ -78,6 +51,7 @@ export interface Card {
   owner_id: number;
 }
 
+// Api Interfaces
 export interface CardResponce {
   publisher: string;
   currency: string;
@@ -88,6 +62,32 @@ export interface CardResponce {
   expiration: string;
 }
 
+export interface AuthBodyResponce {
+  id: number;
+  balance: number;
+}
+
+export interface DefaultApiResponce {
+  status: number;
+  err?: string;
+}
+
 export interface ApiCardResponce extends DefaultApiResponce {
   body?: CardResponce;
+}
+
+export interface ApiCountriesResponce extends DefaultApiResponce {
+  body?: Countries[];
+}
+
+export interface ApiTarrifsResponce extends DefaultApiResponce {
+  body?: Tariffs[];
+}
+
+export interface ApiPassportResponce extends DefaultApiResponce {
+  filename?: string;
+}
+
+export interface ApiAuthUserResponce extends DefaultApiResponce {
+  body?: AuthBodyResponce;
 }

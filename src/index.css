@@ -3,3 +3,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .card-text {
+    @apply font-chivo font-normal text-white-1;
+  }
+  .card-text-sm {
+    @apply card-text text-[14px];
+  }
+  .card-text-md {
+    @apply card-text text-[21px];
+  }
+  .card-text-lg {
+    @apply card-text text-[39px];
+  }
+  .centered {
+    @apply flex items-center justify-center;
+  }
+  .centered-x {
+    @apply flex justify-center;
+  }
+  .centered-y {
+    @apply flex items-center;
+  }
+  .title-xl {
+    @apply font-rubik text-[40px];
+  }
+  .title-lg {
+    @apply font-rubik text-[30px];
+  }
+  .title-md {
+    @apply font-rubik text-[20px];
+  }
+  .title-sm {
+    @apply font-rubik text-[16px];
+  }
+}

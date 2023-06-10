@@ -25,8 +25,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/', router);
 
-// app.use(multer({ dest: 'uploads' }).single('filedata'));
-
 // GET
 router.get('/getCountryDialingCodes', getCountryDialingCodes);
 router.get('/getTariffs', getTariffs);

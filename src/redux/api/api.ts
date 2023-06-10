@@ -1,13 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import {
   IUser,
-  ApiResponce,
   LoginPerson,
   ApiCountriesResponce,
   ApiTarrifsResponce,
   ApiPassportResponce,
   Card,
   ApiCardResponce,
+  DefaultApiResponce,
+  ApiAuthUserResponce,
 } from '@/interfaces/interfaces';
 
 export const api = createApi({
@@ -22,14 +23,14 @@ export const api = createApi({
     }),
 
     // Mutatuins
-    addUser: build.mutation<ApiResponce, IUser>({
+    addUser: build.mutation<DefaultApiResponce, IUser>({
       query: (body: IUser) => ({
         url: `addUser`,
         method: 'POST',
         body,
       }),
     }),
-    authUser: build.mutation<ApiResponce, LoginPerson>({
+    authUser: build.mutation<ApiAuthUserResponce, LoginPerson>({
       query: (body: LoginPerson) => ({
         url: `authUser`,
         method: 'POST',

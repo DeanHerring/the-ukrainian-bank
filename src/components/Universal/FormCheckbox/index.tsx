@@ -11,9 +11,9 @@ interface FormCheckboxProps {
 
 const FormCheckbox: React.FC<FormCheckboxProps> = ({ title, register, name }) => {
   return (
-    <div className="flex items-center mt-[10px] justify-center">
+    <div className="centered mt-[10px]">
       <input type="checkbox" {...register(name)} />
-      <a href="#" className="font-rubik font-normal text-black ml-[10px] underline">
+      <a href="#" className="title-sm font-normal text-black ml-[10px] underline">
         {title}
       </a>
     </div>

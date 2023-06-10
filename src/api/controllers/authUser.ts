@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import { LoginPerson, ApiResponce } from '@/interfaces/interfaces';
+import { LoginPerson, ApiAuthUserResponce } from '@/interfaces/interfaces';
 import { PrismaClient } from '@prisma/client';
 import { createHash } from 'crypto';
 
 const prisma = new PrismaClient();
 
-export const authUser = async (req: Request<LoginPerson>, res: Response<ApiResponce>): Promise<void> => {
+export const authUser = async (req: Request<LoginPerson>, res: Response<ApiAuthUserResponce>): Promise<void> => {
   const { email, password } = req.body;
   const hash: string = createHash('sha256').update(password).digest('hex');
 
