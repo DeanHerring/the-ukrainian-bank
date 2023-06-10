@@ -16,9 +16,6 @@ export default {
         blue: '#2684FF',
       },
       backgroundImage: {
-        'card-1': "url('src/images/card1.svg')",
-        'card-2': "url('src/images/card2.svg')",
-        'card-3': "url('src/images/card3.svg')",
         login: "url('src/images/login.jpg')",
       },
       gridTemplateColumns: {

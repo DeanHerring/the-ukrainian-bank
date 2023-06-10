@@ -51,8 +51,7 @@ export interface Card {
   owner_id: number;
 }
 
-// Api Interfaces
-export interface CardResponce {
+export interface CardProps {
   publisher: string;
   currency: string;
   address: string[];
@@ -60,8 +59,10 @@ export interface CardResponce {
   type: string;
   full_name: string;
   expiration: string;
+  background?: string;
 }
 
+// Api Interfaces
 export interface AuthBodyResponce {
   id: number;
   balance: number;
@@ -70,10 +71,6 @@ export interface AuthBodyResponce {
 export interface DefaultApiResponce {
   status: number;
   err?: string;
-}
-
-export interface ApiCardResponce extends DefaultApiResponce {
-  body?: CardResponce;
 }
 
 export interface ApiCountriesResponce extends DefaultApiResponce {
@@ -90,4 +87,8 @@ export interface ApiPassportResponce extends DefaultApiResponce {
 
 export interface ApiAuthUserResponce extends DefaultApiResponce {
   body?: AuthBodyResponce;
+}
+
+export interface ApiCardResponce extends DefaultApiResponce {
+  body?: CardProps[];
 }

@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
-import { Card, ApiCardResponce } from '@/interfaces/interfaces';
+import { Card, DefaultApiResponce } from '@/interfaces/interfaces';
 
 const prisma = new PrismaClient();
 
-export const createCard = async (req: Request<Card>, res: Response<ApiCardResponce>): Promise<void> => {
+export const createCard = async (req: Request<Card>, res: Response<DefaultApiResponce>): Promise<void> => {
   const currentDate: Date = new Date();
   const month: string = String(currentDate.getMonth() + 1).padStart(2, '0');
   const year: string = String(currentDate.getFullYear()).slice(-2);
@@ -47,31 +47,7 @@ export const createCard = async (req: Request<Card>, res: Response<ApiCardRespon
     },
   });
 
-  const cardToChunks = (address: string): string[] => {
-    const result: string[] = [];
-
-    for (let i: number = 0; i < address.length; i += 4) {
-      const chunk = address.substring(i, i + 4);
-      result.push(chunk);
-    }
-
-    return result;
-  };
-
-  const chunkAddress = cardToChunks(card.address);
-
   card
-    ? res.json({
-        status: 1,
-        body: {
-          publisher: card.publisher,
-          currency: card.currency,
-          address: chunkAddress,
-          pin_code: card.pin_code,
-          type: card.type,
-          full_name: card.full_name,
-          expiration: card.expiration,
-        },
-      })
+    ? res.json({ status: 1 })
     : res.json({ status: 0, err: 'Случился какой-то пиздосевич пиздосян во время генерации карты' });
 };

@@ -6,9 +6,10 @@ import {
   ApiTarrifsResponce,
   ApiPassportResponce,
   Card,
-  ApiCardResponce,
   DefaultApiResponce,
   ApiAuthUserResponce,
+  CardProps,
+  ApiCardResponce,
 } from '@/interfaces/interfaces';
 
 export const api = createApi({
@@ -20,6 +21,9 @@ export const api = createApi({
     }),
     getTariffs: build.query<ApiTarrifsResponce, null>({
       query: () => `/getTariffs`,
+    }),
+    getCardsByOwner: build.query<ApiCardResponce, number>({
+      query: (owner_id: number) => `/getCardsByOwner/${owner_id}`,
     }),
 
     // Mutatuins
@@ -44,7 +48,7 @@ export const api = createApi({
         body,
       }),
     }),
-    createCard: build.mutation<ApiCardResponce, Card>({
+    createCard: build.mutation<DefaultApiResponce, Card>({
       query: (body: Card) => ({
         url: `createCard`,
         method: 'POST',
@@ -61,4 +65,5 @@ export const {
   useUploadPassportMutation,
   useCreateCardMutation,
   useGetCountryDialingCodesQuery,
+  useGetCardsByOwnerQuery,
 } = api;

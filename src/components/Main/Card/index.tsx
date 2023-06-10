@@ -1,16 +1,8 @@
 import React from 'react';
 
-interface CardProps {
-  publisher: string;
-  currency: string;
-  address: string[];
-  pin_code: string;
-  type: string;
-  owner: string;
-  expiration_date: string;
-}
+import { CardProps } from '@/interfaces/interfaces';
 
-const Card: React.FC<CardProps> = ({ publisher, currency, address, pin_code, type, owner, expiration_date }) => {
+const Card: React.FC<CardProps> = ({ publisher, currency, address, pin_code, type, full_name, expiration }) => {
   return (
     <>
       <header className="flex centered-y justify-between">
@@ -29,8 +21,8 @@ const Card: React.FC<CardProps> = ({ publisher, currency, address, pin_code, typ
         </div>
       </div>
       <footer className="centered-y justify-between">
-        <h3 className="card-text-md">{owner}</h3>
-        <h3 className="card-text-md">{expiration_date}</h3>
+        <h3 className="card-text-md">{full_name}</h3>
+        <h3 className="card-text-md">{expiration}</h3>
       </footer>
     </>
   );

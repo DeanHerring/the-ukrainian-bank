@@ -21,6 +21,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import Alerts from '@/components/Universal/Alerts';
 import { Tariffs, Card } from '@/interfaces/interfaces';
 import { useNavigate } from 'react-router-dom';
+import Input from '@/components/Universal/Input';
 
 interface Country {
   flag: string;
@@ -50,6 +51,7 @@ const schema = yup.object({
   card_background: yup.string(),
 });
 
+// @TODO: Отрефакторить этот компонент во время следующего рефакторинга
 const CreateCard: React.FC = () => {
   const {
     register,
@@ -124,8 +126,6 @@ const CreateCard: React.FC = () => {
   };
 
   const onSubmit: SubmitHandler<Card> = (data): void => {
-    console.log('Всё гуд!: ', data);
-
     new Promise(async (resolve, reject) => {
       const result = await createCard({ ...data, owner_id: parseInt(localStorage.id) }).unwrap();
 
@@ -160,10 +160,10 @@ const CreateCard: React.FC = () => {
 
       <Container>
         <header>
-          <h1 className="font-rubik font-medium text-black text-[32px]">Create a digital bank card</h1>
+          <h1 className="title-lg font-medium text-black">Create a digital bank card</h1>
         </header>
 
-        {err.length ? <Alerts text={err[0].message} /> : ''}
+        {err.length ? <Alerts text={err[0].message} type="error" /> : ''}
 
         <form className="mt-[50px]" encType="multipart/form-data" onSubmit={handleSubmit(onSubmit)}>
           <div className="mt-[15px] first:mt-0">
@@ -258,10 +258,7 @@ const CreateCard: React.FC = () => {
           <div className="mt-[15px] first:mt-0">
             <h3 className="font-rubik text-black">Enter Your Phone</h3>
             <div className="bg-white-1 flex rounded-md py-[10px] px-[15px] mt-[5px]">
-              <div
-                className="flex items-center cursor-pointer"
-                onClick={(event: any) => setAnchorEl(event.currentTarget)}
-              >
+              <div className="centered-x cursor-pointer" onClick={(event: any) => setAnchorEl(event.currentTarget)}>
                 <img src={dialingCode.flag} className="w-[30px] h-[18px] rounded mr-[10px]" />
                 <FontAwesomeIcon icon={faCaretUp} className="text-black" />
               </div>
@@ -282,9 +279,9 @@ const CreateCard: React.FC = () => {
                         <li
                           key={country.dialing_code}
                           onClick={() => changeDialingCode(country)}
-                          className="flex items-center justify-between p-[10px] cursor-pointer duration-300 hover:bg-white-3"
+                          className="centered-y justify-between p-[10px] cursor-pointer duration-300 hover:bg-white-3"
                         >
-                          <div className="flex items-center">
+                          <div className="centered-y">
                             <img src={country.flag} className="w-[30px] h-[18px] rounded" />
                             <h3 className="font-rubik text-black ml-[10px]">{country.country}</h3>
                           </div>
@@ -317,7 +314,7 @@ const CreateCard: React.FC = () => {
           </div>
           <div className="mt-[15px] first:mt-0">
             <h3 className="font-rubik text-black">Upload your passport</h3>
-            <div className="flex items-center">
+            <div className="centered-y">
               <input ref={uploadFileRef} onChange={() => getPassport()} name="image" type="file" className="hidden" />
               <button
                 onClick={(e) => handlePassport(e)}
@@ -343,14 +340,14 @@ const CreateCard: React.FC = () => {
                   >
                     <div
                       className={classNames(
-                        activeBackground === index ? 'opacity-100' : '',
+                        activeBackground === index && 'opacity-100',
                         'w-full h-full rounded-[10px] opacity-0 duration-300 bg-[#000]/50 group-hover:opacity-100 flex justify-center items-center',
                       )}
                     >
                       <div
                         className={classNames(
-                          activeBackground === index ? 'bg-white-1' : '',
-                          'w-[100px] h-[100px] rounded-full flex justify-center items-center border border-[5px] border-white-1',
+                          activeBackground === index && 'bg-white-1',
+                          'w-[100px] h-[100px] rounded-full flex justify-center items-center border-[5px] border-white-1',
                         )}
                       >
                         <FontAwesomeIcon
