@@ -14,6 +14,9 @@ module.exports = {
         red: '#F02C2C',
         green: '#109B26',
         blue: '#2684FF',
+        gray: {
+          1: '#848E9C',
+        },
       },
       backgroundImage: {
         'card-1': "url('../images/card1.svg')",

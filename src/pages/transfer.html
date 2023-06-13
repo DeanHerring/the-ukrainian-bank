@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="/css/output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/main.min.css" />
+    <title>The Ukrainian Bank</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="min-h-screen w-full bg-white-2">
+        <!-- Header -->
+        <header class="w-full bg-white-1 px-[5%] flex justify-between items-center">
+          <div class="flex items-center py-[15px]">
+            <img src="../images/logo.svg" alt="" />
+            <h1 class="font-rubik font-medium text-black text-[24px] ml-[10px]">The Ukrainian Bank</h1>
+          </div>
+          <div class="hidden flex items-center ml-[15px] py-[15px]">
+            <div>
+              <h3 class="font-rubik font-normal text-[17px] text-black/75 text-right">Balance</h3>
+              <h1 class="font-rubik font-medium text-[17px] text-black">$182,192.00</h1>
+            </div>
+            <div class="ml-[10px]">
+              <div>
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/d/da/Trevor_Philips.Grand_Theft_Auto_V.jpg"
+                  class="border-white-2 border-[3px] w-[50px] h-[50px] rounded-full"
+                />
+              </div>
+              <!-- @TODO: Дропдовн блок на реакте -->
+            </div>
+          </div>
+          <div class="header__hamburger cursor-pointer">
+            <i class="fa-solid fa-bars text-[30px] text-black"></i>
+          </div>
+        </header>
+
+        <section class="pb-[50px]">
+          <div class="max-w-[90%] w-[1300px] mx-auto">
+            <div class="my-[50px]">
+              <div class="w-[700px] max-w-full bg-white-1 rounded-[10px] p-[25px] mx-auto">
+                <header>
+                  <h1 class="font-rubik font-medium text-[30px] text-black">Transfer</h1>
+                </header>
+                <form class="mt-[35px]">
+                  <div>
+                    <div class="flex items-center">
+                      <i class="fa-solid fa-arrow-trend-up text-black"></i>
+                      <h3 class="font-rubik text-[18px] text-black ml-[10px]">From</h3>
+                    </div>
+                    <select
+                      class="focus:border-yellow border-[2px] border-white-1 bg-white-2 outline-none rounded-[10px] h-[50px] px-[14px] font-rubik font-normal w-full"
+                    >
+                      <!-- @TODO: Сделать дропдаун на реакте через MUI -->
+                      <option value="1234 5678 9012 3456" class="h-[50px]">1234 5678 9012 3456</option>
+                    </select>
+                  </div>
+
+                  <div class="my-[10px] relative">
+                    <div class="w-full h-[1px] bg-white-2 absolute top-1/2"></div>
+                    <div
+                      class="group w-[60px] h-[60px] rounded-full bg-white-2 flex items-center justify-center cursor-pointer duration-300 hover:bg-blue mx-auto relative z-10"
+                    >
+                      <i
+                        class="fa-solid fa-paper-plane text-[20px] text-blue duration-300 group-hover:text-white-1"
+                      ></i>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="flex items-center">
+                      <i class="fa-solid fa-arrow-trend-down text-black"></i>
+                      <h3 class="font-rubik text-[18px] text-black ml-[10px]">To</h3>
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="1234 5678 9012 3456"
+                      class="focus:border-yellow border-[2px] border-white-1 bg-white-2 outline-none rounded-[10px] h-[50px] px-[14px] font-rubik font-normal w-full"
+                    />
+                  </div>
+
+                  <div class="mt-[50px]">
+                    <header class="flex items-center justify-between">
+                      <h2 class="font-rubik text-[18px] text-black">Amount</h2>
+                      <span class="font-rubik text-gray-1">$771.28</span>
+                    </header>
+
+                    <div class="mt-[15px]">
+                      <h3 class="font-rubik text-red">Insufficient funds on the account</h3>
+                      <div class="bg-white-2 h-[50px] rounded-[10px] flex items-center px-[10px]">
+                        <div class="flex items-center border-r-black/30 border-r-[1px] cursor-pointer">
+                          <h3 class="font-rubik text-black/30">UAH</h3>
+                          <i class="fa-solid fa-angle-down text-black/30 mx-[10px]"></i>
+                        </div>
+                        <!-- @TODO: Сделать дропдоун на MUI  -->
+                        <input
+                          type="text"
+                          placeholder="1234 5678 9012 3456"
+                          class="w-full ml-[10px] font-rubik text-black bg-transparent outline-none"
+                        />
+                      </div>
+                      <div class="flex items-center justify-between sm-500:flex-col sm-500:items-start">
+                        <h3 class="font-rubik text-black/75 text-[15px]">The commission from each transfer is 4%</h3>
+                        <h3 class="font-rubik font-medium text-black">$13,54</h3>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
