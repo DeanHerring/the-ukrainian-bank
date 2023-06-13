@@ -18,6 +18,7 @@ const Input: React.FC<InputProps> = ({ header, type, placeholder, register, name
         type={type}
         className="title-sm focus:border-yellow border-[2px] border-white-3 bg-transparent outline-none rounded py-[7px] px-[14px] mt-[10px]"
         placeholder={placeholder}
+        autoComplete="off"
         {...register(name)}
       />
     </div>

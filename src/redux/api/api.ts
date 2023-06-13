@@ -8,8 +8,8 @@ import {
   Card,
   DefaultApiResponce,
   ApiAuthUserResponce,
-  CardProps,
   ApiCardResponce,
+  ApiUserByTokenResponce,
 } from '@/interfaces/interfaces';
 
 export const api = createApi({
@@ -22,8 +22,11 @@ export const api = createApi({
     getTariffs: build.query<ApiTarrifsResponce, null>({
       query: () => `/getTariffs`,
     }),
-    getCardsByOwner: build.query<ApiCardResponce, number>({
-      query: (owner_id: number) => `/getCardsByOwner/${owner_id}`,
+    getCardListByOwner: build.query<ApiCardResponce, string>({
+      query: (token: string) => `/getCardListByOwner/${token}`,
+    }),
+    getUserByToken: build.query<ApiUserByTokenResponce, string>({
+      query: (token: string) => `/getUserByToken/${token}`,
     }),
 
     // Mutatuins
@@ -65,5 +68,6 @@ export const {
   useUploadPassportMutation,
   useCreateCardMutation,
   useGetCountryDialingCodesQuery,
-  useGetCardsByOwnerQuery,
+  useGetCardListByOwnerQuery,
+  useGetUserByTokenQuery,
 } = api;

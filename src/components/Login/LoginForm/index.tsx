@@ -44,10 +44,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ passError }) => {
 
       result.status ? resolve(result) : reject(result.err);
     })
-      .then((q: any) => {
-        localStorage.id = q.body.id;
-        localStorage.balance = q.body.balance;
-
+      .then((result: any) => {
+        localStorage.token = result.token;
         navigate('/');
       })
       .catch((w) => {

@@ -3,15 +3,13 @@ import Card from '@/components/Main/Card';
 
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useGetCardsByOwnerQuery } from '@/redux/api/api';
+import { useGetCardListByOwnerQuery } from '@/redux/api/api';
 
 import 'swiper/css';
 import 'swiper/css/mousewheel';
 
 const CardList: React.FC = () => {
-  const { data: cards } = useGetCardsByOwnerQuery(localStorage.id);
-
-  console.log(cards);
+  const { data: cards } = useGetCardListByOwnerQuery(localStorage.token);
 
   return (
     <div>
@@ -30,11 +28,10 @@ const CardList: React.FC = () => {
         </SwiperSlide>
 
         {cards?.body?.map((card, index) => {
-          console.log(card.background);
           return (
             <SwiperSlide
               key={index}
-              className="flex flex-col cursor-pointer justify-between w-[480px] h-[300px] rounded-[25px] bg-cover p-[25px]"
+              className="flex flex-col cursor-pointer justify-between w-[480px] h-[300px] rounded-[25px] bg-cover p-[25px] bg-black"
               style={{ backgroundImage: `url(${card.background})` }}
             >
               <Card

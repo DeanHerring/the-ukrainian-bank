@@ -67,6 +67,16 @@ CREATE TABLE `Cards` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
+CREATE TABLE `Sessions` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `token` TEXT NOT NULL,
+    `private_key` VARCHAR(191) NOT NULL,
+
+    UNIQUE INDEX `Sessions_token_key`(`token`(191)),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `Testing` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `date` VARCHAR(191) NOT NULL,

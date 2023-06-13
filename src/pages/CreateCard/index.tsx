@@ -21,7 +21,6 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import Alerts from '@/components/Universal/Alerts';
 import { Tariffs, Card } from '@/interfaces/interfaces';
 import { useNavigate } from 'react-router-dom';
-import Input from '@/components/Universal/Input';
 
 interface Country {
   flag: string;
@@ -69,7 +68,7 @@ const CreateCard: React.FC = () => {
     id: 1,
     title: 'Standard',
     monthly_limit: 100000,
-    daily_limit: 25000,
+    daily_limit: 5000,
   };
 
   const cardTypes: string[] = ['Debit', 'Credit'];
@@ -127,7 +126,7 @@ const CreateCard: React.FC = () => {
 
   const onSubmit: SubmitHandler<Card> = (data): void => {
     new Promise(async (resolve, reject) => {
-      const result = await createCard({ ...data, owner_id: parseInt(localStorage.id) }).unwrap();
+      const result = await createCard({ ...data, token: localStorage.token }).unwrap();
 
       result.status ? resolve(result) : reject(result.err);
     })
@@ -172,6 +171,7 @@ const CreateCard: React.FC = () => {
               type="text"
               placeholder="Stepan Neretin Stepanovich"
               className="w-full py-[10px] px-[15px] rounded-md mt-[5px] font-rubik outline-none"
+              autoComplete="off"
               defaultValue="Stepan Neretin Stepanovich"
               {...register('full_name')}
             />
@@ -212,8 +212,9 @@ const CreateCard: React.FC = () => {
               <input
                 type="text"
                 placeholder="2371"
-                defaultValue="2723"
                 className="w-full py-[10px] px-[15px] rounded-md mt-[5px] font-rubik outline-none"
+                autoComplete="off"
+                defaultValue="1234"
                 {...register('pin_code')}
               />
             </div>
@@ -241,6 +242,7 @@ const CreateCard: React.FC = () => {
                 placeholder="$100,000"
                 value={activeTariff.monthly_limit}
                 className="w-full py-[10px] px-[15px] rounded-md mt-[5px] font-rubik outline-none"
+                autoComplete="off"
                 {...register('monthly_limit')}
               />
             </div>
@@ -251,6 +253,7 @@ const CreateCard: React.FC = () => {
                 placeholder="$25,000"
                 value={activeTariff.daily_limit}
                 className="w-full py-[10px] px-[15px] rounded-md mt-[5px] font-rubik outline-none"
+                autoComplete="off"
                 {...register('daily_limit')}
               />
             </div>
@@ -298,6 +301,7 @@ const CreateCard: React.FC = () => {
                 placeholder={`+${dialingCode.dialing_code}`}
                 defaultValue={`+${dialingCode.dialing_code}`}
                 className="w-full font-rubik outline-none ml-[10px] bg-transparent"
+                autoComplete="off"
                 {...register('phone')}
               />
             </div>
@@ -309,13 +313,21 @@ const CreateCard: React.FC = () => {
               placeholder="example@gmail.com"
               defaultValue="example@gmail.com"
               className="w-full py-[10px] px-[15px] rounded-md mt-[5px] font-rubik outline-none"
+              autoComplete="off"
               {...register('email')}
             />
           </div>
           <div className="mt-[15px] first:mt-0">
             <h3 className="font-rubik text-black">Upload your passport</h3>
             <div className="centered-y">
-              <input ref={uploadFileRef} onChange={() => getPassport()} name="image" type="file" className="hidden" />
+              <input
+                autoComplete="off"
+                ref={uploadFileRef}
+                onChange={() => getPassport()}
+                name="image"
+                type="file"
+                className="hidden"
+              />
               <button
                 onClick={(e) => handlePassport(e)}
                 className="bg-white-1 rounded-md px-[15px] py-[10px] font-rubik text-black mt-[5px]"
@@ -367,6 +379,7 @@ const CreateCard: React.FC = () => {
           <input
             type="submit"
             value="Create"
+            autoComplete="off"
             className="bg-white-3 mt-[15px] py-[10px] px-[25px] rounded-md font-rubik text-black duration-300 cursor-pointer hover:bg-blue hover:text-white-1"
           />
         </form>

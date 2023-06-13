@@ -38,4 +38,7 @@
   .title-sm {
     @apply font-rubik text-[16px];
   }
+  .button {
+    @apply px-[15px] py-[10px] rounded-md bg-blue text-white-1 title-sm m-[10px] first:mx-0;
+  }
 }

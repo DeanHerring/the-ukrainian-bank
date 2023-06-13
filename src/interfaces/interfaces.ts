@@ -48,7 +48,7 @@ export interface Card {
   phone: string;
   email: string;
   tariff_plan_id: number;
-  owner_id: number;
+  token: string;
 }
 
 export interface CardProps {
@@ -62,12 +62,11 @@ export interface CardProps {
   background?: string;
 }
 
-// Api Interfaces
-export interface AuthBodyResponce {
-  id: number;
+export interface UserByToken {
   balance: number;
 }
 
+// Api Interfaces
 export interface DefaultApiResponce {
   status: number;
   err?: string;
@@ -86,9 +85,13 @@ export interface ApiPassportResponce extends DefaultApiResponce {
 }
 
 export interface ApiAuthUserResponce extends DefaultApiResponce {
-  body?: AuthBodyResponce;
+  token?: string;
 }
 
 export interface ApiCardResponce extends DefaultApiResponce {
   body?: CardProps[];
+}
+
+export interface ApiUserByTokenResponce extends DefaultApiResponce {
+  body?: UserByToken;
 }

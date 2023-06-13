@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 import { Card, DefaultApiResponce } from '@/interfaces/interfaces';
+import { Utils } from '../../utils/utils.ts';
 
 const prisma = new PrismaClient();
+const utils = new Utils();
 
 export const createCard = async (req: Request<Card>, res: Response<DefaultApiResponce>): Promise<void> => {
   const currentDate: Date = new Date();
@@ -25,29 +27,34 @@ export const createCard = async (req: Request<Card>, res: Response<DefaultApiRes
   };
 
   const address = addressGen();
+  const data = await utils.parseToken(req.body.token);
 
-  const card = await prisma.cards.create({
-    data: {
-      full_name: req.body.full_name,
-      type: req.body.card_type,
-      createdAt: createDate,
-      expiration: expirationDate,
-      currency: req.body.currency,
-      balance: 0.0,
-      address,
-      pin_code: String(req.body.pin_code),
-      monthly_limit: req.body.monthly_limit,
-      background: req.body.card_background && req.body.card_background,
-      daily_limit: req.body.daily_limit,
-      passport: req.body.passport,
-      phone: req.body.phone,
-      email: req.body.email,
-      tariff_plan_id: req.body.tariff_plan_id,
-      owner_id: req.body.owner_id,
-    },
-  });
+  if (data) {
+    const card = await prisma.cards.create({
+      data: {
+        full_name: req.body.full_name,
+        type: req.body.card_type,
+        createdAt: createDate,
+        expiration: expirationDate,
+        currency: req.body.currency,
+        balance: 0.0,
+        address,
+        pin_code: String(req.body.pin_code),
+        monthly_limit: req.body.monthly_limit,
+        background: req.body.card_background && req.body.card_background,
+        daily_limit: req.body.daily_limit,
+        passport: req.body.passport,
+        phone: req.body.phone,
+        email: req.body.email,
+        tariff_plan_id: req.body.tariff_plan_id,
+        owner_id: data.decode_token?.id,
+      },
+    });
 
-  card
-    ? res.json({ status: 1 })
-    : res.json({ status: 0, err: 'Случился какой-то пиздосевич пиздосян во время генерации карты' });
+    card
+      ? res.json({ status: 1 })
+      : res.json({ status: 0, err: 'Случился какой-то пиздосевич пиздосян во время генерации карты' });
+  } else {
+    res.json({ status: 1, err: 'Хуйня какая-то' });
+  }
 };

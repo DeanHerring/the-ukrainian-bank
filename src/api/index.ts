@@ -16,9 +16,10 @@ import { authUser } from './controllers/authUser.ts';
 import { getCountryDialingCodes } from './controllers/getCountryDialingCodes.ts';
 import { getTariffs } from './controllers/getTarrifs.ts';
 import { uploadPassport } from './controllers/uploadPassport.ts';
-import { getCardsByOwner } from './controllers/getCardsByOwner.ts';
 import { createCard } from './controllers/createCard.ts';
 import { tester } from './controllers/tester.ts';
+import { getUserByToken } from './controllers/getUserByToken.ts';
+import { getCardListByOwner } from './controllers/getCardsByOwner.ts';
 
 // Use
 app.use(cors());
@@ -29,7 +30,8 @@ app.use('/', router);
 // GET
 router.get('/getCountryDialingCodes', getCountryDialingCodes);
 router.get('/getTariffs', getTariffs);
-router.get('/getCardsByOwner/:id', getCardsByOwner);
+router.get('/getCardListByOwner/:token', getCardListByOwner);
+router.get('/getUserByToken/:token', getUserByToken);
 
 // POST
 router.post('/addUser', addUser);

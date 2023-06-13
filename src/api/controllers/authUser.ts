@@ -3,6 +3,8 @@ import { LoginPerson, ApiAuthUserResponce } from '@/interfaces/interfaces';
 import { PrismaClient } from '@prisma/client';
 import { createHash } from 'crypto';
 
+import jwt from 'jsonwebtoken';
+
 const prisma = new PrismaClient();
 
 export const authUser = async (req: Request<LoginPerson>, res: Response<ApiAuthUserResponce>): Promise<void> => {
@@ -23,7 +25,19 @@ export const authUser = async (req: Request<LoginPerson>, res: Response<ApiAuthU
     if (user.status) {
       throw new Error('Вы заблокированы');
     }
-    res.json({ status: 1, body: { id: user.id, balance: user.balance } });
+    if (user) {
+      const privateKey = createHash('sha256').digest('hex');
+      const token: string = jwt.sign({ id: user.id }, privateKey, {
+        expiresIn: '1h',
+      });
+      const session = await prisma.sessions.create({
+        data: {
+          token,
+          private_key: privateKey,
+        },
+      });
+      session && res.json({ status: 1, token: session.token });
+    }
   } catch (error: any) {
     res.json({ status: 0, err: error.message });
   }

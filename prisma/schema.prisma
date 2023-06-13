@@ -63,6 +63,12 @@ model Cards {
   owner_id       Int
 }
 
+model Sessions {
+  id          Int    @id @default(autoincrement())
+  token       String @unique(length: 191) @db.Text
+  private_key String
+}
+
 model Testing {
   id    Int    @id @default(autoincrement())
   date  String
