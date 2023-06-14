@@ -44,15 +44,17 @@ export const getCardListByOwner = async (
       return result;
     };
 
-    const body: CardProps[] = cards.map((card) => {
-      return {
-        ...card,
-        address: cardToChunks(card.address),
-      };
-    });
+    if (cards.length) {
+      const body: CardProps[] = cards.map((card) => {
+        return {
+          ...card,
+          address: cardToChunks(card.address),
+        };
+      });
 
-    body.length
-      ? res.json({ status: 1, body })
-      : res.json({ status: 0, err: 'Произошёл пиздец во время доставания карт из БД' });
+      res.json({ status: 1, body });
+    } else {
+      res.json({ status: 0, err: 'У вас нет карт' });
+    }
   }
 };

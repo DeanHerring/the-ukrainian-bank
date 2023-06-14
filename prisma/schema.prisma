@@ -69,6 +69,17 @@ model Sessions {
   private_key String
 }
 
+model Transfers {
+  id         Int     @id @default(autoincrement())
+  sender     String
+  receiver   String
+  amount     Decimal @default(0.00)
+  date       Int
+  currency   Int
+  fee_amount Decimal
+  status     Int
+}
+
 model Testing {
   id    Int    @id @default(autoincrement())
   date  String

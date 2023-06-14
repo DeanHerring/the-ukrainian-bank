@@ -42,3 +42,13 @@
     @apply px-[15px] py-[10px] rounded-md bg-blue text-white-1 title-sm m-[10px] first:mx-0;
   }
 }
+
+/* Кастомизация MUI компонентов */
+.MuiPaper-root {
+  box-shadow: none;
+  border: 1px solid #f6f7f9;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  display: none;
+}

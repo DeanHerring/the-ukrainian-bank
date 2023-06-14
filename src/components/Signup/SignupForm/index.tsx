@@ -58,7 +58,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ passError }) => {
       result.status ? resolve(result) : reject(result.err);
     })
       .then(() => {
-        navigate('/');
+        navigate('/login');
       })
       .catch((w) => {
         setError('email', { type: 'custom', message: w });

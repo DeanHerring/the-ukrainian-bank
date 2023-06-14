@@ -4,6 +4,7 @@ import Signup from '@/pages/Signup';
 import Test from '@/pages/Test';
 import Main from '@/pages/Main';
 import CreateCard from '@/pages/CreateCard';
+import Transfer from '@/pages/Transfer';
 
 import { Routes, Route } from 'react-router-dom';
 
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/create_card" element={<CreateCard />} />
+        <Route path="/transfer" element={<Transfer />} />
         <Route path="/test" element={<Test />} />
       </Routes>
     </div>

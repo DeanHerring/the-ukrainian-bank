@@ -46,7 +46,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ passError }) => {
     })
       .then((result: any) => {
         localStorage.token = result.token;
-        navigate('/');
+        localStorage.token && navigate('/');
       })
       .catch((w) => {
         setError('email', { type: 'custom', message: w });

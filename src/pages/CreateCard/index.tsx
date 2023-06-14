@@ -21,6 +21,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import Alerts from '@/components/Universal/Alerts';
 import { Tariffs, Card } from '@/interfaces/interfaces';
 import { useNavigate } from 'react-router-dom';
+import { usePopover } from '@/hooks/usePopover';
 
 interface Country {
   flag: string;
@@ -75,7 +76,6 @@ const CreateCard: React.FC = () => {
   const currencies: string[] = ['USD', 'UAH', 'EUR', 'PLN', 'JPY'];
 
   const [activeBackground, setActiveBackground] = useState<number>(0);
-  const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
   const [dialingCode, setDialingCode] = useState<Country>(defaultDialingCode);
   const [activeTariff, setActiveTariff] = useState<Tariffs>(defaultTariff);
   const [passport, setPassport] = useState<string>('Загрузите фотографию');
@@ -83,11 +83,9 @@ const CreateCard: React.FC = () => {
   const uploadFileRef = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
 
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
-
   const { data: countries } = useGetCountryDialingCodesQuery(null);
   const { data: tariffs } = useGetTariffsQuery(null);
+  const { handleClick, handleClose, open, id, anchorEl, setAnchorEl } = usePopover();
 
   const [uploadPassport] = useUploadPassportMutation();
   const [createCard] = useCreateCardMutation();
@@ -261,15 +259,15 @@ const CreateCard: React.FC = () => {
           <div className="mt-[15px] first:mt-0">
             <h3 className="font-rubik text-black">Enter Your Phone</h3>
             <div className="bg-white-1 flex rounded-md py-[10px] px-[15px] mt-[5px]">
-              <div className="centered-x cursor-pointer" onClick={(event: any) => setAnchorEl(event.currentTarget)}>
+              <div className="centered-y cursor-pointer" onClick={handleClick}>
                 <img src={dialingCode.flag} className="w-[30px] h-[18px] rounded mr-[10px]" />
-                <FontAwesomeIcon icon={faCaretUp} className="text-black" />
+                <FontAwesomeIcon icon={faCaretUp} className={classNames('text-black', anchorEl && 'rotate-180')} />
               </div>
               <Popover
                 id={id}
                 open={open}
                 anchorEl={anchorEl}
-                onClose={() => setAnchorEl(null)}
+                onClose={handleClose}
                 anchorOrigin={{
                   vertical: 'bottom',
                   horizontal: 'left',
@@ -299,7 +297,6 @@ const CreateCard: React.FC = () => {
               <input
                 type="text"
                 placeholder={`+${dialingCode.dialing_code}`}
-                defaultValue={`+${dialingCode.dialing_code}`}
                 className="w-full font-rubik outline-none ml-[10px] bg-transparent"
                 autoComplete="off"
                 {...register('phone')}

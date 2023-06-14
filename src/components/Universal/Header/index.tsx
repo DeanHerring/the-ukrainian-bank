@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Logo from '../Logo';
 import Popover from '@mui/material/Popover';
 
@@ -6,34 +6,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { useGetUserByTokenQuery } from '@/redux/api/api';
+import { usePopover } from '@/hooks/usePopover';
 
 // @TODO: Подумать над улучшением этого компонента
 const Header: React.FC = () => {
-  const { data: user } = useGetUserByTokenQuery(localStorage.token);
+  const { data: user, isLoading } = useGetUserByTokenQuery(localStorage.token);
+  const { handleClick, handleClose, open, id, anchorEl } = usePopover();
 
-  React.useEffect(() => {
-    if (user) {
-      localStorage.balance = user.body?.balance;
-    }
-  }, []);
-
-  const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
-
-  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    setAnchorEl(event.currentTarget);
+  const logout = (): void => {
+    localStorage.clear();
+    location.reload();
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <header className="sm:flex-col w-full bg-white-1 px-[5%] justify-between centered-y py-[15px]">
+    <header className="sm:flex-col w-full bg-white-1 px-[5%] justify-between centered-y">
       <Logo />
-      {localStorage.balance ? (
+      {localStorage.token && user?.status ? (
         <div className="centered-y ml-[15px] py-[15px]">
           <div>
             <h3 className="title-sm text-black/75 text-right">Balance</h3>
@@ -68,7 +60,10 @@ const Header: React.FC = () => {
               className="mt-[10px]"
             >
               <ul className="p-[5px]">
-                <li className="centered-y justify-between p-[10px] rounded cursor-pointer duration-300 hover:bg-white-3">
+                <li
+                  onClick={() => logout()}
+                  className="centered-y justify-between p-[10px] rounded cursor-pointer duration-300 hover:bg-white-3"
+                >
                   <FontAwesomeIcon icon={faArrowRightFromBracket} />
                   <h3 className="title-sm ml-[25px]">Sign Out</h3>
                 </li>

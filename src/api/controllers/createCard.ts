@@ -29,7 +29,7 @@ export const createCard = async (req: Request<Card>, res: Response<DefaultApiRes
   const address = addressGen();
   const data = await utils.parseToken(req.body.token);
 
-  if (data) {
+  if (data?.success) {
     const card = await prisma.cards.create({
       data: {
         full_name: req.body.full_name,
